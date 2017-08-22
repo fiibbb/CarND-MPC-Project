@@ -12,9 +12,9 @@ QR, %SVD, eigendecompositions... After reading this page, don't miss our
 
 \b The \b problem: You have a system of equations, that you have written as a single matrix equation
     \f[ Ax \: = \: b \f]
-Where \a A and \a b are matrices (\a b could be a vector, as a special case). You want to find a solution \a x.
+Where \a a and \a b are matrices (\a b could be a vector, as a special case). You want to find a solution \a x.
 
-\b The \b solution: You can choose between various decompositions, depending on what your matrix \a A looks like,
+\b The \b solution: You can choose between various decompositions, depending on what your matrix \a a looks like,
 and depending on whether you favor speed or accuracy. However, let's start with an example that works in all cases,
 and is a good compromise:
 <table class="example">
@@ -28,7 +28,7 @@ and is a good compromise:
 In this example, the colPivHouseholderQr() method returns an object of class ColPivHouseholderQR. Since here the
 matrix is of type Matrix3f, this line could have been replaced by:
 \code
-ColPivHouseholderQR<Matrix3f> dec(A);
+ColPivHouseholderQR<Matrix3f> dec(a);
 Vector3f x = dec.solve(b);
 \endcode
 
@@ -228,8 +228,8 @@ are using fixed-size matrices, no dynamic memory allocation happens at all). Thi
 passing the size to the decomposition constructor, as in this example:
 \code
 HouseholderQR<MatrixXf> qr(50,50);
-MatrixXf A = MatrixXf::Random(50,50);
-qr.compute(A); // no dynamic memory allocation
+MatrixXf a = MatrixXf::Random(50,50);
+qr.compute(a); // no dynamic memory allocation
 \endcode
 
 \section TutorialLinAlgRankRevealing Rank-revealing decompositions

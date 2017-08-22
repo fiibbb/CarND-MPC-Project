@@ -18,10 +18,10 @@
 *  Definition:
 *  ===========
 *
-*       COMPLEX*16     FUNCTION ZLADIV( X, Y )
+*       COMPLEX*16     FUNCTION ZLADIV( x, y )
 * 
 *       .. Scalar Arguments ..
-*       COMPLEX*16         X, Y
+*       COMPLEX*16         x, y
 *       ..
 *  
 *
@@ -30,7 +30,7 @@
 *>
 *> \verbatim
 *>
-*> ZLADIV := X / Y, where X and Y are complex.  The computation of X / Y
+*> ZLADIV := x / y, where x and y are complex.  The computation of x / y
 *> will not overflow on an intermediary step unless the results
 *> overflows.
 *> \endverbatim
@@ -38,15 +38,15 @@
 *  Arguments:
 *  ==========
 *
-*> \param[in] X
+*> \param[in] x
 *> \verbatim
-*>          X is COMPLEX*16
+*>          x is COMPLEX*16
 *> \endverbatim
 *>
-*> \param[in] Y
+*> \param[in] y
 *> \verbatim
-*>          Y is COMPLEX*16
-*>          The complex scalars X and Y.
+*>          y is COMPLEX*16
+*>          The complex scalars x and y.
 *> \endverbatim
 *
 *  Authors:
@@ -62,7 +62,7 @@
 *> \ingroup complex16OTHERauxiliary
 *
 *  =====================================================================
-      COMPLEX*16     FUNCTION ZLADIV( X, Y )
+      COMPLEX*16     FUNCTION ZLADIV( x, y )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -70,7 +70,7 @@
 *     November 2011
 *
 *     .. Scalar Arguments ..
-      COMPLEX*16         X, Y
+      COMPLEX*16         x, y
 *     ..
 *
 *  =====================================================================
@@ -86,7 +86,7 @@
 *     ..
 *     .. Executable Statements ..
 *
-      CALL DLADIV( DBLE( X ), DIMAG( X ), DBLE( Y ), DIMAG( Y ), ZR,
+      CALL DLADIV( DBLE( x ), DIMAG( x ), DBLE( y ), DIMAG( y ), ZR,
      $             ZI )
       ZLADIV = DCMPLX( ZR, ZI )
 *

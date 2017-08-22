@@ -18,10 +18,10 @@
 *  Definition:
 *  ===========
 *
-*       COMPLEX FUNCTION CLADIV( X, Y )
+*       COMPLEX FUNCTION CLADIV( x, y )
 * 
 *       .. Scalar Arguments ..
-*       COMPLEX            X, Y
+*       COMPLEX            x, y
 *       ..
 *  
 *
@@ -30,7 +30,7 @@
 *>
 *> \verbatim
 *>
-*> CLADIV := X / Y, where X and Y are complex.  The computation of X / Y
+*> CLADIV := x / y, where x and y are complex.  The computation of x / y
 *> will not overflow on an intermediary step unless the results
 *> overflows.
 *> \endverbatim
@@ -38,15 +38,15 @@
 *  Arguments:
 *  ==========
 *
-*> \param[in] X
+*> \param[in] x
 *> \verbatim
-*>          X is COMPLEX
+*>          x is COMPLEX
 *> \endverbatim
 *>
-*> \param[in] Y
+*> \param[in] y
 *> \verbatim
-*>          Y is COMPLEX
-*>          The complex scalars X and Y.
+*>          y is COMPLEX
+*>          The complex scalars x and y.
 *> \endverbatim
 *
 *  Authors:
@@ -62,7 +62,7 @@
 *> \ingroup complexOTHERauxiliary
 *
 *  =====================================================================
-      COMPLEX FUNCTION CLADIV( X, Y )
+      COMPLEX FUNCTION CLADIV( x, y )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -70,7 +70,7 @@
 *     November 2011
 *
 *     .. Scalar Arguments ..
-      COMPLEX            X, Y
+      COMPLEX            x, y
 *     ..
 *
 *  =====================================================================
@@ -86,7 +86,7 @@
 *     ..
 *     .. Executable Statements ..
 *
-      CALL SLADIV( REAL( X ), AIMAG( X ), REAL( Y ), AIMAG( Y ), ZR,
+      CALL SLADIV( REAL( x ), AIMAG( x ), REAL( y ), AIMAG( y ), ZR,
      $             ZI )
       CLADIV = CMPLX( ZR, ZI )
 *

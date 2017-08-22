@@ -222,13 +222,13 @@ x = Dynamic2D::Zero(rows, cols);
 x = Dynamic2D::Ones(rows, cols);
 x = Dynamic2D::Constant(rows, cols, value);
 x = Dynamic2D::Random(rows, cols);
-N/A
+N/a
 
 x.setZero(rows, cols);
 x.setOnes(rows, cols);
 x.setConstant(rows, cols, value);
 x.setRandom(rows, cols);
-N/A
+N/a
 \endcode
   </td>
   <td>
@@ -270,11 +270,11 @@ x.setIdentity(rows, cols);
 
 
 
-N/A
+N/a
 \endcode
   </td>
   <td>\code
-N/A
+N/a
 
 
 VectorXf::Unit(size,i)

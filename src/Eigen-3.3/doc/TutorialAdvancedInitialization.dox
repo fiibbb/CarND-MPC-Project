@@ -24,7 +24,7 @@ or too many coefficients, Eigen will complain.
 \verbinclude Tutorial_commainit_01.out
 </td></tr></table>
 
-Moreover, the elements of the initialization list may themselves be vectors or matrices. A common use is
+Moreover, the elements of the initialization list may themselves be vectors or matrices. a common use is
 to join vectors or matrices together. For example, here is how to join two row vectors together. Remember
 that you have to set the size before you can use the comma initializer.
 
@@ -115,7 +115,7 @@ assignment, using static methods and the comma-initializer, or using the setXxx(
 \verbinclude Tutorial_AdvancedInitialization_ThreeWays.out
 </td></tr></table>
 
-A summary of all pre-defined matrix, vector and array objects can be found in the \ref QuickRefPage.
+a summary of all pre-defined matrix, vector and array objects can be found in the \ref QuickRefPage.
 
 
 \section TutorialAdvancedInitializationTemporaryObjects Usage as temporary objects

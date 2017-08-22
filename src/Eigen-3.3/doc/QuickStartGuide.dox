@@ -11,7 +11,7 @@ This is a very short guide on how to get started with Eigen. It has a dual purpo
 In order to use Eigen, you just need to download and extract Eigen's source code (see <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page#Download">the wiki</a> for download instructions). In fact, the header files in the \c Eigen subdirectory are the only files required to compile programs using Eigen. The header files are the same for all platforms. It is not necessary to use CMake or install anything.
 
 
-\section GettingStartedFirstProgram A simple first program
+\section GettingStartedFirstProgram a simple first program
 
 Here is a rather simple program to get you started.
 
@@ -26,7 +26,7 @@ There is no library to link to. The only thing that you need to keep in mind whe
 
 \code g++ -I /path/to/eigen/ my_program.cpp -o my_program \endcode
 
-On Linux or Mac OS X, another option is to symlink or copy the Eigen folder into /usr/local/include/. This way, you can compile the program with:
+On Linux or Mac OS x, another option is to symlink or copy the Eigen folder into /usr/local/include/. This way, you can compile the program with:
 
 \code g++ my_program.cpp -o my_program \endcode
 
@@ -37,7 +37,7 @@ When you run the program, it produces the following output:
 
 \section GettingStartedExplanation Explanation of the first program
 
-The Eigen header files define many types, but for simple applications it may be enough to use only the \c MatrixXd type. This represents a matrix of arbitrary size (hence the \c X in \c MatrixXd), in which every entry is a \c double (hence the \c d in \c MatrixXd). See the \ref QuickRef_Types "quick reference guide" for an overview of the different types you can use to represent a matrix.
+The Eigen header files define many types, but for simple applications it may be enough to use only the \c MatrixXd type. This represents a matrix of arbitrary size (hence the \c x in \c MatrixXd), in which every entry is a \c double (hence the \c d in \c MatrixXd). See the \ref QuickRef_Types "quick reference guide" for an overview of the different types you can use to represent a matrix.
 
 The \c Eigen/Dense header file defines all member functions for the MatrixXd type and related types (see also the \ref QuickRef_Headers "table of header files"). All classes and functions defined in this header file (and other Eigen header files) are in the \c Eigen namespace. 
 
@@ -83,7 +83,7 @@ The final line of the program multiplies the matrix \c m with the vector \c v an
 
 Now look back at the second example program. We presented two versions of it. In the version in the left column, the matrix is of type \c MatrixXd which represents matrices of arbitrary size. The version in the right column is similar, except that the matrix is of type \c Matrix3d, which represents matrices of a fixed size (here 3-by-3). Because the type already encodes the size of the matrix, it is not necessary to specify the size in the constructor; compare <tt>MatrixXd m(3,3)</tt> with <tt>Matrix3d m</tt>. Similarly, we have \c VectorXd on the left (arbitrary size) versus \c Vector3d on the right (fixed size). Note that here the coefficients of vector \c v are directly set in the constructor, though the same syntax of the left example could be used too.
 
-The use of fixed-size matrices and vectors has two advantages. The compiler emits better (faster) code because it knows the size of the matrices and vectors. Specifying the size in the type also allows for more rigorous checking at compile-time. For instance, the compiler will complain if you try to multiply a \c Matrix4d (a 4-by-4 matrix) with a \c Vector3d (a vector of size 3). However, the use of many types increases compilation time and the size of the executable. The size of the matrix may also not be known at compile-time. A rule of thumb is to use fixed-size matrices for size 4-by-4 and smaller.
+The use of fixed-size matrices and vectors has two advantages. The compiler emits better (faster) code because it knows the size of the matrices and vectors. Specifying the size in the type also allows for more rigorous checking at compile-time. For instance, the compiler will complain if you try to multiply a \c Matrix4d (a 4-by-4 matrix) with a \c Vector3d (a vector of size 3). However, the use of many types increases compilation time and the size of the executable. The size of the matrix may also not be known at compile-time. a rule of thumb is to use fixed-size matrices for size 4-by-4 and smaller.
 
 
 \section GettingStartedConclusion Where to go from here?

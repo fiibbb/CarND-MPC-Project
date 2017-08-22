@@ -12,7 +12,7 @@ When you write a line of code involving a complex expression such as
 
 Eigen determines automatically, for each sub-expression, whether to evaluate it into a temporary variable. Indeed, in certain cases it is better to evaluate immediately a sub-expression into a temporary variable, while in other cases it is better to avoid that.
 
-A traditional math library without expression templates always evaluates all sub-expressions into temporaries. So with this code,
+a traditional math library without expression templates always evaluates all sub-expressions into temporaries. So with this code,
 
 \code vec1 = vec2 + vec3; \endcode
 

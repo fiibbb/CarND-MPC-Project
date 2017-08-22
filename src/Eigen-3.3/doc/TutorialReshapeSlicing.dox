@@ -9,7 +9,7 @@ Nonetheless, such features can easily be emulated using the Map class.
 
 \section TutorialReshape Reshape
 
-A reshape operation consists in modifying the sizes of a matrix while keeping the same coefficients.
+a reshape operation consists in modifying the sizes of a matrix while keeping the same coefficients.
 Instead of modifying the input matrix itself, which is not possible for compile-time sizes, the approach consist in creating a different \em view on the storage using class Map.
 Here is a typical example creating a 1D linear view of a matrix:
 

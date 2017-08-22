@@ -146,39 +146,39 @@
 *> \details
 *> \b Purpose:
 *> \verbatim
-*> DLAMC3  is intended to force  A  and  B  to be stored prior to doing
-*> the addition of  A  and  B ,  for use in situations where optimizers
+*> DLAMC3  is intended to force  a  and  B  to be stored prior to doing
+*> the addition of  a  and  B ,  for use in situations where optimizers
 *> might hold one of these in a register.
 *> \endverbatim
 *> \author LAPACK is a software package provided by Univ. of Tennessee, Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..
 *> \date November 2011
 *> \ingroup auxOTHERauxiliary
 *>
-*> \param[in] A
+*> \param[in] a
 *> \verbatim
-*>          A is a DOUBLE PRECISION
+*>          a is a DOUBLE PRECISION
 *> \endverbatim
 *>
 *> \param[in] B
 *> \verbatim
 *>          B is a DOUBLE PRECISION
-*>          The values A and B.
+*>          The values a and B.
 *> \endverbatim
 *>
-      DOUBLE PRECISION FUNCTION DLAMC3( A, B )
+      DOUBLE PRECISION FUNCTION DLAMC3( a, B )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
 *     November 2010
 *
 *     .. Scalar Arguments ..
-      DOUBLE PRECISION   A, B
+      DOUBLE PRECISION   a, B
 *     ..
 * =====================================================================
 *
 *     .. Executable Statements ..
 *
-      DLAMC3 = A + B
+      DLAMC3 = a + B
 *
       RETURN
 *

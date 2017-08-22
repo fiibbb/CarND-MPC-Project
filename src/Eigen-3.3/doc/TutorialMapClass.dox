@@ -13,7 +13,7 @@ Occasionally you may have a pre-defined array of numbers that you want to use wi
 
 \section TutorialMapTypes Map types and declaring Map variables
 
-A Map object has a type defined by its %Eigen equivalent:
+a Map object has a type defined by its %Eigen equivalent:
 \code
 Map<Matrix<typename Scalar, int RowsAtCompileTime, int ColsAtCompileTime> >
 \endcode
@@ -23,7 +23,7 @@ To construct a Map variable, you need two other pieces of information: a pointer
 \code
 Map<MatrixXf> mf(pf,rows,columns);
 \endcode
-where \c pf is a \c float \c * pointing to the array of memory.  A fixed-size read-only vector of integers might be declared as
+where \c pf is a \c float \c * pointing to the array of memory.  a fixed-size read-only vector of integers might be declared as
 \code
 Map<const Vector4i> mi(pi);
 \endcode
@@ -72,12 +72,12 @@ Despite appearances, this does not invoke the memory allocator, because the synt
 
 This syntax makes it possible to declare a Map object without first knowing the mapped array's location in memory:
 \code
-Map<Matrix3f> A(NULL);  // don't try to use this matrix yet!
+Map<Matrix3f> a(NULL);  // don't try to use this matrix yet!
 VectorXf b(n_matrices);
 for (int i = 0; i < n_matrices; i++)
 {
-  new (&A) Map<Matrix3f>(get_matrix_pointer(i));
-  b(i) = A.trace();
+  new (&a) Map<Matrix3f>(get_matrix_pointer(i));
+  b(i) = a.trace();
 }
 \endcode
 

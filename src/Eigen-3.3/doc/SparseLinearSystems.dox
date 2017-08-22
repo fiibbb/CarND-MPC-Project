@@ -48,7 +48,7 @@ They are summarized in the following tables:
 <tr><td>LeastSquaresConjugateGradient \n <tt>\#include<Eigen/\link IterativeLinearSolvers_Module IterativeLinearSolvers\endlink></tt></td><td>CG for rectangular least-square problem</td><td>Rectangular</td>
     <td>IdentityPreconditioner, [LeastSquareDiagonalPreconditioner]</td>
     <td>MPL2</td>
-    <td>Solve for min |A'Ax-b|^2 without forming A'A</td></tr>
+    <td>Solve for min |a'Ax-b|^2 without forming a'a</td></tr>
 
 <tr><td>BiCGSTAB \n <tt>\#include<Eigen/\link IterativeLinearSolvers_Module IterativeLinearSolvers\endlink></tt></td><td>Iterative stabilized bi-conjugate gradient</td><td>Square</td>
     <td>IdentityPreconditioner, [DiagonalPreconditioner], IncompleteLUT</td>
@@ -90,13 +90,13 @@ Here is a typical and general example:
 \code
 #include <Eigen/RequiredModuleName>
 // ...
-SparseMatrix<double> A;
-// fill A
+SparseMatrix<double> a;
+// fill a
 VectorXd b, x;
 // fill b
 // solve Ax = b
 SolverClassName<SparseMatrix<double> > solver;
-solver.compute(A);
+solver.compute(a);
 if(solver.info()!=Success) {
   // decomposition failed
   return;
@@ -116,20 +116,20 @@ For \c SPD solvers, a second optional template argument allows to specify which 
 #include <Eigen/IterativeLinearSolvers>
 
 ConjugateGradient<SparseMatrix<double>, Eigen::Upper> solver;
-x = solver.compute(A).solve(b);
+x = solver.compute(a).solve(b);
 \endcode
-In the above example, only the upper triangular part of the input matrix A is considered for solving. The opposite triangle might either be empty or contain arbitrary values.
+In the above example, only the upper triangular part of the input matrix a is considered for solving. The opposite triangle might either be empty or contain arbitrary values.
 
 In the case where multiple problems with the same sparsity pattern have to be solved, then the "compute" step can be decomposed as follow:
 \code
 SolverClassName<SparseMatrix<double> > solver;
-solver.analyzePattern(A);   // for this step the numerical values of A are not used
-solver.factorize(A);
+solver.analyzePattern(a);   // for this step the numerical values of a are not used
+solver.factorize(a);
 x1 = solver.solve(b1);
 x2 = solver.solve(b2);
 ...
-A = ...;                    // modify the values of the nonzeros of A, the nonzeros pattern must stay unchanged
-solver.factorize(A);
+a = ...;                    // modify the values of the nonzeros of a, the nonzeros pattern must stay unchanged
+solver.factorize(a);
 x1 = solver.solve(b1);
 x2 = solver.solve(b2);
 ...
@@ -165,7 +165,7 @@ The member function preconditioner() returns a read-write reference to the preco
 \section TheSparseSolve The Solve step
 The solve() function computes the solution of the linear systems with one or many right hand sides.
 \code
-X = solver.solve(B);
+x = solver.solve(B);
 \endcode 
 Here, B  can be a vector or a matrix where the columns form the different right hand sides. The solve() function can be called several times as well, for instance when all the right hand sides are not available at once. 
 \code
@@ -183,8 +183,8 @@ To export your matrices and right-hand-side vectors in the matrix-market format,
 \code
 #include <unsupported/Eigen/SparseExtra>
 ...
-Eigen::saveMarket(A, "filename.mtx");
-Eigen::saveMarket(A, "filename_SPD.mtx", Eigen::Symmetric); // if A is symmetric-positive-definite
+Eigen::saveMarket(a, "filename.mtx");
+Eigen::saveMarket(a, "filename_SPD.mtx", Eigen::Symmetric); // if a is symmetric-positive-definite
 Eigen::saveMarketVector(B, "filename_b.mtx");
 \endcode
 

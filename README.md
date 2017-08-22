@@ -3,6 +3,15 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Rubric Points
+The model keeps a state of vehicle, which includes the `x` and `y` coordidates, orientation `psi`, and velocity `v`. It also keeps track of cross-track-error `cte` and orientation error `epsi`. The model then uses the state and actuations  from last timestamp to predict the state at the current timestamp following the equations explained in class.  
+
+The value for N and dt were chosen to be `10` and `0.05` respectively. This was mostly decided after trial and error, as well as incorporating suggestions from Udacity forum for reasonable range of these parameters. Other N value experimented with are `[20, 18, 16, 14, 12, 8, 6]`. Other `dt` value experimented with are `[1, 0.5, 0.25, 0.1]`.  
+
+The preprocessing of waypoints coordinates involve transforming the points from global to local coordiantes of the vehicle. This allows easier polyfit process since the vehicle is at `(0, 0)` after the transformation.
+
+To deal with latency, the model projects the state of the vehicle into 100ms later, which forces the control output to counter the latency effect.
+
 ## Dependencies
 
 * cmake >= 3.5

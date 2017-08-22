@@ -51,7 +51,7 @@ ColPivHouseholderQR (column pivoting, thus a bit slower but more accurate) and F
 \section LeastSquaresNormalEquations Using normal equations
 
 Finding the least squares solution of \a Ax = \a b is equivalent to solving the normal equation
-<i>A</i><sup>T</sup><i>Ax</i> = <i>A</i><sup>T</sup><i>b</i>. This leads to the following code
+<i>a</i><sup>T</sup><i>Ax</i> = <i>a</i><sup>T</sup><i>b</i>. This leads to the following code
 
 <table class="example">
 <tr><th>Example:</th><th>Output:</th></tr>
@@ -61,8 +61,8 @@ Finding the least squares solution of \a Ax = \a b is equivalent to solving the 
 </tr>
 </table>
 
-If the matrix \a A is ill-conditioned, then this is not a good method, because the condition number
-of <i>A</i><sup>T</sup><i>A</i> is the square of the condition number of \a A. This means that you
+If the matrix \a a is ill-conditioned, then this is not a good method, because the condition number
+of <i>a</i><sup>T</sup><i>a</i> is the square of the condition number of \a a. This means that you
 lose twice as many digits using normal equation than if you use the other methods.
 
 */

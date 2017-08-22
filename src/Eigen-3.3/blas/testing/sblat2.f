@@ -131,10 +131,10 @@
       CHARACTER*6        SNAMET
       CHARACTER*32       SNAPS, SUMMRY
 *     .. Local Arrays ..
-      REAL               A( NMAX, NMAX ), AA( NMAX*NMAX ),
+      REAL               a( NMAX, NMAX ), AA( NMAX*NMAX ),
      $                   ALF( NALMAX ), AS( NMAX*NMAX ), BET( NBEMAX ),
-     $                   G( NMAX ), X( NMAX ), XS( NMAX*INCMAX ),
-     $                   XX( NMAX*INCMAX ), Y( NMAX ),
+     $                   G( NMAX ), x( NMAX ), XS( NMAX*INCMAX ),
+     $                   XX( NMAX*INCMAX ), y( NMAX ),
      $                   YS( NMAX*INCMAX ), YT( NMAX ),
      $                   YY( NMAX*INCMAX ), Z( 2*NMAX )
       INTEGER            IDIM( NIDMAX ), INC( NINMAX ), KB( NKBMAX )
@@ -289,10 +289,10 @@
       N = MIN( 32, NMAX )
       DO 120 J = 1, N
          DO 110 I = 1, N
-            A( I, J ) = MAX( I - J + 1, 0 )
+            a( I, J ) = MAX( I - J + 1, 0 )
   110    CONTINUE
-         X( J ) = J
-         Y( J ) = ZERO
+         x( J ) = J
+         y( J ) = ZERO
   120 CONTINUE
       DO 130 J = 1, N
          YY( J ) = J*( ( J + 1 )*J )/2 - ( ( J + 1 )*J*( J - 1 ) )/3
@@ -300,7 +300,7 @@
 *     YY holds the exact result. On exit from SMVCH YT holds
 *     the result computed by SMVCH.
       TRANS = 'N'
-      CALL SMVCH( TRANS, N, N, ONE, A, NMAX, X, 1, ZERO, Y, 1, YT, G,
+      CALL SMVCH( TRANS, N, N, ONE, a, NMAX, x, 1, ZERO, y, 1, YT, G,
      $            YY, EPS, ERR, FATAL, NOUT, .TRUE. )
       SAME = LSE( YY, YT, N )
       IF( .NOT.SAME.OR.ERR.NE.ZERO )THEN
@@ -308,7 +308,7 @@
          STOP
       END IF
       TRANS = 'T'
-      CALL SMVCH( TRANS, N, N, ONE, A, NMAX, X, -1, ZERO, Y, -1, YT, G,
+      CALL SMVCH( TRANS, N, N, ONE, a, NMAX, x, -1, ZERO, y, -1, YT, G,
      $            YY, EPS, ERR, FATAL, NOUT, .TRUE. )
       SAME = LSE( YY, YT, N )
       IF( .NOT.SAME.OR.ERR.NE.ZERO )THEN
@@ -340,37 +340,37 @@
 *           Test SGEMV, 01, and SGBMV, 02.
   140       CALL SCHK1( SNAMES( ISNUM ), EPS, THRESH, NOUT, NTRA, TRACE,
      $                  REWI, FATAL, NIDIM, IDIM, NKB, KB, NALF, ALF,
-     $                  NBET, BET, NINC, INC, NMAX, INCMAX, A, AA, AS,
-     $                  X, XX, XS, Y, YY, YS, YT, G )
+     $                  NBET, BET, NINC, INC, NMAX, INCMAX, a, AA, AS,
+     $                  x, XX, XS, y, YY, YS, YT, G )
             GO TO 200
 *           Test SSYMV, 03, SSBMV, 04, and SSPMV, 05.
   150       CALL SCHK2( SNAMES( ISNUM ), EPS, THRESH, NOUT, NTRA, TRACE,
      $                  REWI, FATAL, NIDIM, IDIM, NKB, KB, NALF, ALF,
-     $                  NBET, BET, NINC, INC, NMAX, INCMAX, A, AA, AS,
-     $                  X, XX, XS, Y, YY, YS, YT, G )
+     $                  NBET, BET, NINC, INC, NMAX, INCMAX, a, AA, AS,
+     $                  x, XX, XS, y, YY, YS, YT, G )
             GO TO 200
 *           Test STRMV, 06, STBMV, 07, STPMV, 08,
 *           STRSV, 09, STBSV, 10, and STPSV, 11.
   160       CALL SCHK3( SNAMES( ISNUM ), EPS, THRESH, NOUT, NTRA, TRACE,
      $                  REWI, FATAL, NIDIM, IDIM, NKB, KB, NINC, INC,
-     $                  NMAX, INCMAX, A, AA, AS, Y, YY, YS, YT, G, Z )
+     $                  NMAX, INCMAX, a, AA, AS, y, YY, YS, YT, G, Z )
             GO TO 200
 *           Test SGER, 12.
   170       CALL SCHK4( SNAMES( ISNUM ), EPS, THRESH, NOUT, NTRA, TRACE,
      $                  REWI, FATAL, NIDIM, IDIM, NALF, ALF, NINC, INC,
-     $                  NMAX, INCMAX, A, AA, AS, X, XX, XS, Y, YY, YS,
+     $                  NMAX, INCMAX, a, AA, AS, x, XX, XS, y, YY, YS,
      $                  YT, G, Z )
             GO TO 200
 *           Test SSYR, 13, and SSPR, 14.
   180       CALL SCHK5( SNAMES( ISNUM ), EPS, THRESH, NOUT, NTRA, TRACE,
      $                  REWI, FATAL, NIDIM, IDIM, NALF, ALF, NINC, INC,
-     $                  NMAX, INCMAX, A, AA, AS, X, XX, XS, Y, YY, YS,
+     $                  NMAX, INCMAX, a, AA, AS, x, XX, XS, y, YY, YS,
      $                  YT, G, Z )
             GO TO 200
 *           Test SSYR2, 15, and SSPR2, 16.
   190       CALL SCHK6( SNAMES( ISNUM ), EPS, THRESH, NOUT, NTRA, TRACE,
      $                  REWI, FATAL, NIDIM, IDIM, NALF, ALF, NINC, INC,
-     $                  NMAX, INCMAX, A, AA, AS, X, XX, XS, Y, YY, YS,
+     $                  NMAX, INCMAX, a, AA, AS, x, XX, XS, y, YY, YS,
      $                  YT, G, Z )
 *
   200       IF( FATAL.AND.SFATAL )
@@ -396,7 +396,7 @@
  9999 FORMAT( ' ROUTINES PASS COMPUTATIONAL TESTS IF TEST RATIO IS LES',
      $      'S THAN', F8.2 )
  9998 FORMAT( ' RELATIVE MACHINE PRECISION IS TAKEN TO BE', 1P, E9.1 )
- 9997 FORMAT( ' NUMBER OF VALUES OF ', A, ' IS LESS THAN 1 OR GREATER ',
+ 9997 FORMAT( ' NUMBER OF VALUES OF ', a, ' IS LESS THAN 1 OR GREATER ',
      $      'THAN ', I2 )
  9996 FORMAT( ' VALUE OF N IS LESS THAN 0 OR GREATER THAN ', I2 )
  9995 FORMAT( ' VALUE OF K IS LESS THAN 0' )
@@ -429,8 +429,8 @@
       END
       SUBROUTINE SCHK1( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NKB, KB, NALF, ALF, NBET,
-     $                  BET, NINC, INC, NMAX, INCMAX, A, AA, AS, X, XX,
-     $                  XS, Y, YY, YS, YT, G )
+     $                  BET, NINC, INC, NMAX, INCMAX, a, AA, AS, x, XX,
+     $                  XS, y, YY, YS, YT, G )
 *
 *  Tests SGEMV and SGBMV.
 *
@@ -450,10 +450,10 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      REAL               A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+      REAL               a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
      $                   AS( NMAX*NMAX ), BET( NBET ), G( NMAX ),
-     $                   X( NMAX ), XS( NMAX*INCMAX ),
-     $                   XX( NMAX*INCMAX ), Y( NMAX ),
+     $                   x( NMAX ), XS( NMAX*INCMAX ),
+     $                   XX( NMAX*INCMAX ), y( NMAX ),
      $                   YS( NMAX*INCMAX ), YT( NMAX ),
      $                   YY( NMAX*INCMAX )
       INTEGER            IDIM( NIDIM ), INC( NINC ), KB( NKB )
@@ -533,10 +533,10 @@
                LAA = LDA*N
                NULL = N.LE.0.OR.M.LE.0
 *
-*              Generate the matrix A.
+*              Generate the matrix a.
 *
                TRANSL = ZERO
-               CALL SMAKE( SNAME( 2: 3 ), ' ', ' ', M, N, A, NMAX, AA,
+               CALL SMAKE( SNAME( 2: 3 ), ' ', ' ', M, N, a, NMAX, AA,
      $                     LDA, KL, KU, RESET, TRANSL )
 *
                DO 90 IC = 1, 3
@@ -555,13 +555,13 @@
                      INCX = INC( IX )
                      LX = ABS( INCX )*NL
 *
-*                    Generate the vector X.
+*                    Generate the vector x.
 *
                      TRANSL = HALF
-                     CALL SMAKE( 'GE', ' ', ' ', 1, NL, X, 1, XX,
+                     CALL SMAKE( 'GE', ' ', ' ', 1, NL, x, 1, XX,
      $                           ABS( INCX ), 0, NL - 1, RESET, TRANSL )
                      IF( NL.GT.1 )THEN
-                        X( NL/2 ) = ZERO
+                        x( NL/2 ) = ZERO
                         XX( 1 + ABS( INCX )*( NL/2 - 1 ) ) = ZERO
                      END IF
 *
@@ -575,10 +575,10 @@
                            DO 50 IB = 1, NBET
                               BETA = BET( IB )
 *
-*                             Generate the vector Y.
+*                             Generate the vector y.
 *
                               TRANSL = ZERO
-                              CALL SMAKE( 'GE', ' ', ' ', 1, ML, Y, 1,
+                              CALL SMAKE( 'GE', ' ', ' ', 1, ML, y, 1,
      $                                    YY, ABS( INCY ), 0, ML - 1,
      $                                    RESET, TRANSL )
 *
@@ -696,8 +696,8 @@
 *
 *                                Check the result.
 *
-                                 CALL SMVCH( TRANS, M, N, ALPHA, A,
-     $                                       NMAX, X, INCX, BETA, Y,
+                                 CALL SMVCH( TRANS, M, N, ALPHA, a,
+     $                                       NMAX, x, INCX, BETA, y,
      $                                       INCY, YT, G, YY, EPS, ERR,
      $                                       FATAL, NOUT, .TRUE. )
                                  ERRMAX = MAX( ERRMAX, ERR )
@@ -758,9 +758,9 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', 4( I3, ',' ), F4.1,
-     $      ', A,', I3, ', X,', I2, ',', F4.1, ', Y,', I2, ') .' )
+     $      ', a,', I3, ', x,', I2, ',', F4.1, ', y,', I2, ') .' )
  9994 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', 2( I3, ',' ), F4.1,
-     $      ', A,', I3, ', X,', I2, ',', F4.1, ', Y,', I2,
+     $      ', a,', I3, ', x,', I2, ',', F4.1, ', y,', I2,
      $      ')         .' )
  9993 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
@@ -770,8 +770,8 @@
       END
       SUBROUTINE SCHK2( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NKB, KB, NALF, ALF, NBET,
-     $                  BET, NINC, INC, NMAX, INCMAX, A, AA, AS, X, XX,
-     $                  XS, Y, YY, YS, YT, G )
+     $                  BET, NINC, INC, NMAX, INCMAX, a, AA, AS, x, XX,
+     $                  XS, y, YY, YS, YT, G )
 *
 *  Tests SSYMV, SSBMV and SSPMV.
 *
@@ -791,10 +791,10 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      REAL               A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+      REAL               a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
      $                   AS( NMAX*NMAX ), BET( NBET ), G( NMAX ),
-     $                   X( NMAX ), XS( NMAX*INCMAX ),
-     $                   XX( NMAX*INCMAX ), Y( NMAX ),
+     $                   x( NMAX ), XS( NMAX*INCMAX ),
+     $                   XX( NMAX*INCMAX ), y( NMAX ),
      $                   YS( NMAX*INCMAX ), YT( NMAX ),
      $                   YY( NMAX*INCMAX )
       INTEGER            IDIM( NIDIM ), INC( NINC ), KB( NKB )
@@ -823,7 +823,7 @@
 *     .. Data statements ..
       DATA               ICH/'UL'/
 *     .. Executable Statements ..
-      FULL = SNAME( 3: 3 ).EQ.'Y'
+      FULL = SNAME( 3: 3 ).EQ.'y'
       BANDED = SNAME( 3: 3 ).EQ.'B'
       PACKED = SNAME( 3: 3 ).EQ.'P'
 *     Define the number of arguments.
@@ -874,23 +874,23 @@
             DO 90 IC = 1, 2
                UPLO = ICH( IC: IC )
 *
-*              Generate the matrix A.
+*              Generate the matrix a.
 *
                TRANSL = ZERO
-               CALL SMAKE( SNAME( 2: 3 ), UPLO, ' ', N, N, A, NMAX, AA,
+               CALL SMAKE( SNAME( 2: 3 ), UPLO, ' ', N, N, a, NMAX, AA,
      $                     LDA, K, K, RESET, TRANSL )
 *
                DO 80 IX = 1, NINC
                   INCX = INC( IX )
                   LX = ABS( INCX )*N
 *
-*                 Generate the vector X.
+*                 Generate the vector x.
 *
                   TRANSL = HALF
-                  CALL SMAKE( 'GE', ' ', ' ', 1, N, X, 1, XX,
+                  CALL SMAKE( 'GE', ' ', ' ', 1, N, x, 1, XX,
      $                        ABS( INCX ), 0, N - 1, RESET, TRANSL )
                   IF( N.GT.1 )THEN
-                     X( N/2 ) = ZERO
+                     x( N/2 ) = ZERO
                      XX( 1 + ABS( INCX )*( N/2 - 1 ) ) = ZERO
                   END IF
 *
@@ -904,10 +904,10 @@
                         DO 50 IB = 1, NBET
                            BETA = BET( IB )
 *
-*                          Generate the vector Y.
+*                          Generate the vector y.
 *
                            TRANSL = ZERO
-                           CALL SMAKE( 'GE', ' ', ' ', 1, N, Y, 1, YY,
+                           CALL SMAKE( 'GE', ' ', ' ', 1, N, y, 1, YY,
      $                                 ABS( INCY ), 0, N - 1, RESET,
      $                                 TRANSL )
 *
@@ -1037,8 +1037,8 @@
 *
 *                             Check the result.
 *
-                              CALL SMVCH( 'N', N, N, ALPHA, A, NMAX, X,
-     $                                    INCX, BETA, Y, INCY, YT, G,
+                              CALL SMVCH( 'N', N, N, ALPHA, a, NMAX, x,
+     $                                    INCX, BETA, y, INCY, YT, G,
      $                                    YY, EPS, ERR, FATAL, NOUT,
      $                                    .TRUE. )
                               ERRMAX = MAX( ERRMAX, ERR )
@@ -1099,12 +1099,12 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', AP',
-     $      ', X,', I2, ',', F4.1, ', Y,', I2, ')                .' )
+     $      ', x,', I2, ',', F4.1, ', y,', I2, ')                .' )
  9994 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', 2( I3, ',' ), F4.1,
-     $      ', A,', I3, ', X,', I2, ',', F4.1, ', Y,', I2,
+     $      ', a,', I3, ', x,', I2, ',', F4.1, ', y,', I2,
      $      ')         .' )
- 9993 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', A,',
-     $      I3, ', X,', I2, ',', F4.1, ', Y,', I2, ')             .' )
+ 9993 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', a,',
+     $      I3, ', x,', I2, ',', F4.1, ', y,', I2, ')             .' )
  9992 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
 *
@@ -1113,7 +1113,7 @@
       END
       SUBROUTINE SCHK3( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NKB, KB, NINC, INC, NMAX,
-     $                  INCMAX, A, AA, AS, X, XX, XS, XT, G, Z )
+     $                  INCMAX, a, AA, AS, x, XX, XS, XT, G, Z )
 *
 *  Tests STRMV, STBMV, STPMV, STRSV, STBSV and STPSV.
 *
@@ -1132,8 +1132,8 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      REAL               A( NMAX, NMAX ), AA( NMAX*NMAX ),
-     $                   AS( NMAX*NMAX ), G( NMAX ), X( NMAX ),
+      REAL               a( NMAX, NMAX ), AA( NMAX*NMAX ),
+     $                   AS( NMAX*NMAX ), G( NMAX ), x( NMAX ),
      $                   XS( NMAX*INCMAX ), XT( NMAX ),
      $                   XX( NMAX*INCMAX ), Z( NMAX )
       INTEGER            IDIM( NIDIM ), INC( NINC ), KB( NKB )
@@ -1224,24 +1224,24 @@
                   DO 70 ICD = 1, 2
                      DIAG = ICHD( ICD: ICD )
 *
-*                    Generate the matrix A.
+*                    Generate the matrix a.
 *
                      TRANSL = ZERO
-                     CALL SMAKE( SNAME( 2: 3 ), UPLO, DIAG, N, N, A,
+                     CALL SMAKE( SNAME( 2: 3 ), UPLO, DIAG, N, N, a,
      $                           NMAX, AA, LDA, K, K, RESET, TRANSL )
 *
                      DO 60 IX = 1, NINC
                         INCX = INC( IX )
                         LX = ABS( INCX )*N
 *
-*                       Generate the vector X.
+*                       Generate the vector x.
 *
                         TRANSL = HALF
-                        CALL SMAKE( 'GE', ' ', ' ', 1, N, X, 1, XX,
+                        CALL SMAKE( 'GE', ' ', ' ', 1, N, x, 1, XX,
      $                              ABS( INCX ), 0, N - 1, RESET,
      $                              TRANSL )
                         IF( N.GT.1 )THEN
-                           X( N/2 ) = ZERO
+                           x( N/2 ) = ZERO
                            XX( 1 + ABS( INCX )*( N/2 - 1 ) ) = ZERO
                         END IF
 *
@@ -1384,7 +1384,7 @@
 *
 *                             Check the result.
 *
-                              CALL SMVCH( TRANS, N, N, ONE, A, NMAX, X,
+                              CALL SMVCH( TRANS, N, N, ONE, a, NMAX, x,
      $                                    INCX, ZERO, Z, INCX, XT, G,
      $                                    XX, EPS, ERR, FATAL, NOUT,
      $                                    .TRUE. )
@@ -1396,10 +1396,10 @@
                                  Z( I ) = XX( 1 + ( I - 1 )*
      $                                    ABS( INCX ) )
                                  XX( 1 + ( I - 1 )*ABS( INCX ) )
-     $                              = X( I )
+     $                              = x( I )
    50                         CONTINUE
-                              CALL SMVCH( TRANS, N, N, ONE, A, NMAX, Z,
-     $                                    INCX, ZERO, X, INCX, XT, G,
+                              CALL SMVCH( TRANS, N, N, ONE, a, NMAX, Z,
+     $                                    INCX, ZERO, x, INCX, XT, G,
      $                                    XX, EPS, ERR, FATAL, NOUT,
      $                                    .FALSE. )
                            END IF
@@ -1457,11 +1457,11 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( 1X, I6, ': ', A6, '(', 3( '''', A1, ''',' ), I3, ', AP, ',
-     $      'X,', I2, ')                        .' )
+     $      'x,', I2, ')                        .' )
  9994 FORMAT( 1X, I6, ': ', A6, '(', 3( '''', A1, ''',' ), 2( I3, ',' ),
-     $      ' A,', I3, ', X,', I2, ')                 .' )
- 9993 FORMAT( 1X, I6, ': ', A6, '(', 3( '''', A1, ''',' ), I3, ', A,',
-     $      I3, ', X,', I2, ')                     .' )
+     $      ' a,', I3, ', x,', I2, ')                 .' )
+ 9993 FORMAT( 1X, I6, ': ', A6, '(', 3( '''', A1, ''',' ), I3, ', a,',
+     $      I3, ', x,', I2, ')                     .' )
  9992 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
 *
@@ -1470,7 +1470,7 @@
       END
       SUBROUTINE SCHK4( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NALF, ALF, NINC, INC, NMAX,
-     $                  INCMAX, A, AA, AS, X, XX, XS, Y, YY, YS, YT, G,
+     $                  INCMAX, a, AA, AS, x, XX, XS, y, YY, YS, YT, G,
      $                  Z )
 *
 *  Tests SGER.
@@ -1490,10 +1490,10 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      REAL               A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
-     $                   AS( NMAX*NMAX ), G( NMAX ), X( NMAX ),
+      REAL               a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+     $                   AS( NMAX*NMAX ), G( NMAX ), x( NMAX ),
      $                   XS( NMAX*INCMAX ), XX( NMAX*INCMAX ),
-     $                   Y( NMAX ), YS( NMAX*INCMAX ), YT( NMAX ),
+     $                   y( NMAX ), YS( NMAX*INCMAX ), YT( NMAX ),
      $                   YY( NMAX*INCMAX ), Z( NMAX )
       INTEGER            IDIM( NIDIM ), INC( NINC )
 *     .. Local Scalars ..
@@ -1549,13 +1549,13 @@
                INCX = INC( IX )
                LX = ABS( INCX )*M
 *
-*              Generate the vector X.
+*              Generate the vector x.
 *
                TRANSL = HALF
-               CALL SMAKE( 'GE', ' ', ' ', 1, M, X, 1, XX, ABS( INCX ),
+               CALL SMAKE( 'GE', ' ', ' ', 1, M, x, 1, XX, ABS( INCX ),
      $                     0, M - 1, RESET, TRANSL )
                IF( M.GT.1 )THEN
-                  X( M/2 ) = ZERO
+                  x( M/2 ) = ZERO
                   XX( 1 + ABS( INCX )*( M/2 - 1 ) ) = ZERO
                END IF
 *
@@ -1563,23 +1563,23 @@
                   INCY = INC( IY )
                   LY = ABS( INCY )*N
 *
-*                 Generate the vector Y.
+*                 Generate the vector y.
 *
                   TRANSL = ZERO
-                  CALL SMAKE( 'GE', ' ', ' ', 1, N, Y, 1, YY,
+                  CALL SMAKE( 'GE', ' ', ' ', 1, N, y, 1, YY,
      $                        ABS( INCY ), 0, N - 1, RESET, TRANSL )
                   IF( N.GT.1 )THEN
-                     Y( N/2 ) = ZERO
+                     y( N/2 ) = ZERO
                      YY( 1 + ABS( INCY )*( N/2 - 1 ) ) = ZERO
                   END IF
 *
                   DO 80 IA = 1, NALF
                      ALPHA = ALF( IA )
 *
-*                    Generate the matrix A.
+*                    Generate the matrix a.
 *
                      TRANSL = ZERO
-                     CALL SMAKE( SNAME( 2: 3 ), ' ', ' ', M, N, A, NMAX,
+                     CALL SMAKE( SNAME( 2: 3 ), ' ', ' ', M, N, a, NMAX,
      $                           AA, LDA, M - 1, N - 1, RESET, TRANSL )
 *
                      NC = NC + 1
@@ -1656,21 +1656,21 @@
 *
                         IF( INCX.GT.0 )THEN
                            DO 50 I = 1, M
-                              Z( I ) = X( I )
+                              Z( I ) = x( I )
    50                      CONTINUE
                         ELSE
                            DO 60 I = 1, M
-                              Z( I ) = X( M - I + 1 )
+                              Z( I ) = x( M - I + 1 )
    60                      CONTINUE
                         END IF
                         DO 70 J = 1, N
                            IF( INCY.GT.0 )THEN
-                              W( 1 ) = Y( J )
+                              W( 1 ) = y( J )
                            ELSE
-                              W( 1 ) = Y( N - J + 1 )
+                              W( 1 ) = y( N - J + 1 )
                            END IF
                            CALL SMVCH( 'N', M, 1, ALPHA, Z, NMAX, W, 1,
-     $                                 ONE, A( 1, J ), 1, YT, G,
+     $                                 ONE, a( 1, J ), 1, YT, G,
      $                                 AA( 1 + ( J - 1 )*LDA ), EPS,
      $                                 ERR, FATAL, NOUT, .TRUE. )
                            ERRMAX = MAX( ERRMAX, ERR )
@@ -1721,8 +1721,8 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( '      THESE ARE THE RESULTS FOR COLUMN ', I3 )
- 9994 FORMAT( 1X, I6, ': ', A6, '(', 2( I3, ',' ), F4.1, ', X,', I2,
-     $      ', Y,', I2, ', A,', I3, ')                  .' )
+ 9994 FORMAT( 1X, I6, ': ', A6, '(', 2( I3, ',' ), F4.1, ', x,', I2,
+     $      ', y,', I2, ', a,', I3, ')                  .' )
  9993 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
 *
@@ -1731,7 +1731,7 @@
       END
       SUBROUTINE SCHK5( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NALF, ALF, NINC, INC, NMAX,
-     $                  INCMAX, A, AA, AS, X, XX, XS, Y, YY, YS, YT, G,
+     $                  INCMAX, a, AA, AS, x, XX, XS, y, YY, YS, YT, G,
      $                  Z )
 *
 *  Tests SSYR and SSPR.
@@ -1751,10 +1751,10 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      REAL               A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
-     $                   AS( NMAX*NMAX ), G( NMAX ), X( NMAX ),
+      REAL               a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+     $                   AS( NMAX*NMAX ), G( NMAX ), x( NMAX ),
      $                   XS( NMAX*INCMAX ), XX( NMAX*INCMAX ),
-     $                   Y( NMAX ), YS( NMAX*INCMAX ), YT( NMAX ),
+     $                   y( NMAX ), YS( NMAX*INCMAX ), YT( NMAX ),
      $                   YY( NMAX*INCMAX ), Z( NMAX )
       INTEGER            IDIM( NIDIM ), INC( NINC )
 *     .. Local Scalars ..
@@ -1782,7 +1782,7 @@
 *     .. Data statements ..
       DATA               ICH/'UL'/
 *     .. Executable Statements ..
-      FULL = SNAME( 3: 3 ).EQ.'Y'
+      FULL = SNAME( 3: 3 ).EQ.'y'
       PACKED = SNAME( 3: 3 ).EQ.'P'
 *     Define the number of arguments.
       IF( FULL )THEN
@@ -1818,13 +1818,13 @@
                INCX = INC( IX )
                LX = ABS( INCX )*N
 *
-*              Generate the vector X.
+*              Generate the vector x.
 *
                TRANSL = HALF
-               CALL SMAKE( 'GE', ' ', ' ', 1, N, X, 1, XX, ABS( INCX ),
+               CALL SMAKE( 'GE', ' ', ' ', 1, N, x, 1, XX, ABS( INCX ),
      $                     0, N - 1, RESET, TRANSL )
                IF( N.GT.1 )THEN
-                  X( N/2 ) = ZERO
+                  x( N/2 ) = ZERO
                   XX( 1 + ABS( INCX )*( N/2 - 1 ) ) = ZERO
                END IF
 *
@@ -1832,10 +1832,10 @@
                   ALPHA = ALF( IA )
                   NULL = N.LE.0.OR.ALPHA.EQ.ZERO
 *
-*                 Generate the matrix A.
+*                 Generate the matrix a.
 *
                   TRANSL = ZERO
-                  CALL SMAKE( SNAME( 2: 3 ), UPLO, ' ', N, N, A, NMAX,
+                  CALL SMAKE( SNAME( 2: 3 ), UPLO, ' ', N, N, a, NMAX,
      $                        AA, LDA, N - 1, N - 1, RESET, TRANSL )
 *
                   NC = NC + 1
@@ -1916,11 +1916,11 @@
 *
                      IF( INCX.GT.0 )THEN
                         DO 40 I = 1, N
-                           Z( I ) = X( I )
+                           Z( I ) = x( I )
    40                   CONTINUE
                      ELSE
                         DO 50 I = 1, N
-                           Z( I ) = X( N - I + 1 )
+                           Z( I ) = x( N - I + 1 )
    50                   CONTINUE
                      END IF
                      JA = 1
@@ -1934,7 +1934,7 @@
                            LJ = N - J + 1
                         END IF
                         CALL SMVCH( 'N', LJ, 1, ALPHA, Z( JJ ), LJ, W,
-     $                              1, ONE, A( JJ, J ), 1, YT, G,
+     $                              1, ONE, a( JJ, J ), 1, YT, G,
      $                              AA( JA ), EPS, ERR, FATAL, NOUT,
      $                              .TRUE. )
                         IF( FULL )THEN
@@ -1997,10 +1997,10 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( '      THESE ARE THE RESULTS FOR COLUMN ', I3 )
- 9994 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', X,',
+ 9994 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', x,',
      $      I2, ', AP)                           .' )
- 9993 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', X,',
-     $      I2, ', A,', I3, ')                        .' )
+ 9993 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', x,',
+     $      I2, ', a,', I3, ')                        .' )
  9992 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
 *
@@ -2009,7 +2009,7 @@
       END
       SUBROUTINE SCHK6( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NALF, ALF, NINC, INC, NMAX,
-     $                  INCMAX, A, AA, AS, X, XX, XS, Y, YY, YS, YT, G,
+     $                  INCMAX, a, AA, AS, x, XX, XS, y, YY, YS, YT, G,
      $                  Z )
 *
 *  Tests SSYR2 and SSPR2.
@@ -2029,10 +2029,10 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      REAL               A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
-     $                   AS( NMAX*NMAX ), G( NMAX ), X( NMAX ),
+      REAL               a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+     $                   AS( NMAX*NMAX ), G( NMAX ), x( NMAX ),
      $                   XS( NMAX*INCMAX ), XX( NMAX*INCMAX ),
-     $                   Y( NMAX ), YS( NMAX*INCMAX ), YT( NMAX ),
+     $                   y( NMAX ), YS( NMAX*INCMAX ), YT( NMAX ),
      $                   YY( NMAX*INCMAX ), Z( NMAX, 2 )
       INTEGER            IDIM( NIDIM ), INC( NINC )
 *     .. Local Scalars ..
@@ -2061,7 +2061,7 @@
 *     .. Data statements ..
       DATA               ICH/'UL'/
 *     .. Executable Statements ..
-      FULL = SNAME( 3: 3 ).EQ.'Y'
+      FULL = SNAME( 3: 3 ).EQ.'y'
       PACKED = SNAME( 3: 3 ).EQ.'P'
 *     Define the number of arguments.
       IF( FULL )THEN
@@ -2097,13 +2097,13 @@
                INCX = INC( IX )
                LX = ABS( INCX )*N
 *
-*              Generate the vector X.
+*              Generate the vector x.
 *
                TRANSL = HALF
-               CALL SMAKE( 'GE', ' ', ' ', 1, N, X, 1, XX, ABS( INCX ),
+               CALL SMAKE( 'GE', ' ', ' ', 1, N, x, 1, XX, ABS( INCX ),
      $                     0, N - 1, RESET, TRANSL )
                IF( N.GT.1 )THEN
-                  X( N/2 ) = ZERO
+                  x( N/2 ) = ZERO
                   XX( 1 + ABS( INCX )*( N/2 - 1 ) ) = ZERO
                END IF
 *
@@ -2111,13 +2111,13 @@
                   INCY = INC( IY )
                   LY = ABS( INCY )*N
 *
-*                 Generate the vector Y.
+*                 Generate the vector y.
 *
                   TRANSL = ZERO
-                  CALL SMAKE( 'GE', ' ', ' ', 1, N, Y, 1, YY,
+                  CALL SMAKE( 'GE', ' ', ' ', 1, N, y, 1, YY,
      $                        ABS( INCY ), 0, N - 1, RESET, TRANSL )
                   IF( N.GT.1 )THEN
-                     Y( N/2 ) = ZERO
+                     y( N/2 ) = ZERO
                      YY( 1 + ABS( INCY )*( N/2 - 1 ) ) = ZERO
                   END IF
 *
@@ -2125,10 +2125,10 @@
                      ALPHA = ALF( IA )
                      NULL = N.LE.0.OR.ALPHA.EQ.ZERO
 *
-*                    Generate the matrix A.
+*                    Generate the matrix a.
 *
                      TRANSL = ZERO
-                     CALL SMAKE( SNAME( 2: 3 ), UPLO, ' ', N, N, A,
+                     CALL SMAKE( SNAME( 2: 3 ), UPLO, ' ', N, N, a,
      $                           NMAX, AA, LDA, N - 1, N - 1, RESET,
      $                           TRANSL )
 *
@@ -2218,20 +2218,20 @@
 *
                         IF( INCX.GT.0 )THEN
                            DO 50 I = 1, N
-                              Z( I, 1 ) = X( I )
+                              Z( I, 1 ) = x( I )
    50                      CONTINUE
                         ELSE
                            DO 60 I = 1, N
-                              Z( I, 1 ) = X( N - I + 1 )
+                              Z( I, 1 ) = x( N - I + 1 )
    60                      CONTINUE
                         END IF
                         IF( INCY.GT.0 )THEN
                            DO 70 I = 1, N
-                              Z( I, 2 ) = Y( I )
+                              Z( I, 2 ) = y( I )
    70                      CONTINUE
                         ELSE
                            DO 80 I = 1, N
-                              Z( I, 2 ) = Y( N - I + 1 )
+                              Z( I, 2 ) = y( N - I + 1 )
    80                      CONTINUE
                         END IF
                         JA = 1
@@ -2246,7 +2246,7 @@
                               LJ = N - J + 1
                            END IF
                            CALL SMVCH( 'N', LJ, 2, ALPHA, Z( JJ, 1 ),
-     $                                 NMAX, W, 1, ONE, A( JJ, J ), 1,
+     $                                 NMAX, W, 1, ONE, a( JJ, J ), 1,
      $                                 YT, G, AA( JA ), EPS, ERR, FATAL,
      $                                 NOUT, .TRUE. )
                            IF( FULL )THEN
@@ -2312,10 +2312,10 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( '      THESE ARE THE RESULTS FOR COLUMN ', I3 )
- 9994 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', X,',
-     $      I2, ', Y,', I2, ', AP)                     .' )
- 9993 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', X,',
-     $      I2, ', Y,', I2, ', A,', I3, ')                  .' )
+ 9994 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', x,',
+     $      I2, ', y,', I2, ', AP)                     .' )
+ 9993 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',', I3, ',', F4.1, ', x,',
+     $      I2, ', y,', I2, ', a,', I3, ')                  .' )
  9992 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
 *
@@ -2326,7 +2326,7 @@
 *
 *  Tests the error exits from the Level 2 Blas.
 *  Requires a special version of the error-handling routine XERBLA.
-*  ALPHA, BETA, A, X and Y should not need to be defined.
+*  ALPHA, BETA, a, x and y should not need to be defined.
 *
 *  Auxiliary routine for test program for Level 2 Blas.
 *
@@ -2343,7 +2343,7 @@
 *     .. Local Scalars ..
       REAL               ALPHA, BETA
 *     .. Local Arrays ..
-      REAL               A( 1, 1 ), X( 1 ), Y( 1 )
+      REAL               a( 1, 1 ), x( 1 ), y( 1 )
 *     .. External Subroutines ..
       EXTERNAL           CHKXER, SGBMV, SGEMV, SGER, SSBMV, SSPMV, SSPR,
      $                   SSPR2, SSYMV, SSYR, SSYR2, STBMV, STBSV, STPMV,
@@ -2361,277 +2361,277 @@
      $        90, 100, 110, 120, 130, 140, 150,
      $        160 )ISNUM
    10 INFOT = 1
-      CALL SGEMV( '/', 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGEMV( '/', 0, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SGEMV( 'N', -1, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGEMV( 'N', -1, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL SGEMV( 'N', 0, -1, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGEMV( 'N', 0, -1, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL SGEMV( 'N', 2, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGEMV( 'N', 2, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL SGEMV( 'N', 0, 0, ALPHA, A, 1, X, 0, BETA, Y, 1 )
+      CALL SGEMV( 'N', 0, 0, ALPHA, a, 1, x, 0, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL SGEMV( 'N', 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 0 )
+      CALL SGEMV( 'N', 0, 0, ALPHA, a, 1, x, 1, BETA, y, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    20 INFOT = 1
-      CALL SGBMV( '/', 0, 0, 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGBMV( '/', 0, 0, 0, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SGBMV( 'N', -1, 0, 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGBMV( 'N', -1, 0, 0, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL SGBMV( 'N', 0, -1, 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGBMV( 'N', 0, -1, 0, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL SGBMV( 'N', 0, 0, -1, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGBMV( 'N', 0, 0, -1, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL SGBMV( 'N', 2, 0, 0, -1, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGBMV( 'N', 2, 0, 0, -1, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL SGBMV( 'N', 0, 0, 1, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SGBMV( 'N', 0, 0, 1, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL SGBMV( 'N', 0, 0, 0, 0, ALPHA, A, 1, X, 0, BETA, Y, 1 )
+      CALL SGBMV( 'N', 0, 0, 0, 0, ALPHA, a, 1, x, 0, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL SGBMV( 'N', 0, 0, 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 0 )
+      CALL SGBMV( 'N', 0, 0, 0, 0, ALPHA, a, 1, x, 1, BETA, y, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    30 INFOT = 1
-      CALL SSYMV( '/', 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SSYMV( '/', 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SSYMV( 'U', -1, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SSYMV( 'U', -1, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL SSYMV( 'U', 2, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SSYMV( 'U', 2, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL SSYMV( 'U', 0, ALPHA, A, 1, X, 0, BETA, Y, 1 )
+      CALL SSYMV( 'U', 0, ALPHA, a, 1, x, 0, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL SSYMV( 'U', 0, ALPHA, A, 1, X, 1, BETA, Y, 0 )
+      CALL SSYMV( 'U', 0, ALPHA, a, 1, x, 1, BETA, y, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    40 INFOT = 1
-      CALL SSBMV( '/', 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SSBMV( '/', 0, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SSBMV( 'U', -1, 0, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SSBMV( 'U', -1, 0, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL SSBMV( 'U', 0, -1, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SSBMV( 'U', 0, -1, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL SSBMV( 'U', 0, 1, ALPHA, A, 1, X, 1, BETA, Y, 1 )
+      CALL SSBMV( 'U', 0, 1, ALPHA, a, 1, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL SSBMV( 'U', 0, 0, ALPHA, A, 1, X, 0, BETA, Y, 1 )
+      CALL SSBMV( 'U', 0, 0, ALPHA, a, 1, x, 0, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL SSBMV( 'U', 0, 0, ALPHA, A, 1, X, 1, BETA, Y, 0 )
+      CALL SSBMV( 'U', 0, 0, ALPHA, a, 1, x, 1, BETA, y, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    50 INFOT = 1
-      CALL SSPMV( '/', 0, ALPHA, A, X, 1, BETA, Y, 1 )
+      CALL SSPMV( '/', 0, ALPHA, a, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SSPMV( 'U', -1, ALPHA, A, X, 1, BETA, Y, 1 )
+      CALL SSPMV( 'U', -1, ALPHA, a, x, 1, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL SSPMV( 'U', 0, ALPHA, A, X, 0, BETA, Y, 1 )
+      CALL SSPMV( 'U', 0, ALPHA, a, x, 0, BETA, y, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL SSPMV( 'U', 0, ALPHA, A, X, 1, BETA, Y, 0 )
+      CALL SSPMV( 'U', 0, ALPHA, a, x, 1, BETA, y, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    60 INFOT = 1
-      CALL STRMV( '/', 'N', 'N', 0, A, 1, X, 1 )
+      CALL STRMV( '/', 'N', 'N', 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL STRMV( 'U', '/', 'N', 0, A, 1, X, 1 )
+      CALL STRMV( 'U', '/', 'N', 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL STRMV( 'U', 'N', '/', 0, A, 1, X, 1 )
+      CALL STRMV( 'U', 'N', '/', 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL STRMV( 'U', 'N', 'N', -1, A, 1, X, 1 )
+      CALL STRMV( 'U', 'N', 'N', -1, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL STRMV( 'U', 'N', 'N', 2, A, 1, X, 1 )
+      CALL STRMV( 'U', 'N', 'N', 2, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL STRMV( 'U', 'N', 'N', 0, A, 1, X, 0 )
+      CALL STRMV( 'U', 'N', 'N', 0, a, 1, x, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    70 INFOT = 1
-      CALL STBMV( '/', 'N', 'N', 0, 0, A, 1, X, 1 )
+      CALL STBMV( '/', 'N', 'N', 0, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL STBMV( 'U', '/', 'N', 0, 0, A, 1, X, 1 )
+      CALL STBMV( 'U', '/', 'N', 0, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL STBMV( 'U', 'N', '/', 0, 0, A, 1, X, 1 )
+      CALL STBMV( 'U', 'N', '/', 0, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL STBMV( 'U', 'N', 'N', -1, 0, A, 1, X, 1 )
+      CALL STBMV( 'U', 'N', 'N', -1, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL STBMV( 'U', 'N', 'N', 0, -1, A, 1, X, 1 )
+      CALL STBMV( 'U', 'N', 'N', 0, -1, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL STBMV( 'U', 'N', 'N', 0, 1, A, 1, X, 1 )
+      CALL STBMV( 'U', 'N', 'N', 0, 1, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL STBMV( 'U', 'N', 'N', 0, 0, A, 1, X, 0 )
+      CALL STBMV( 'U', 'N', 'N', 0, 0, a, 1, x, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    80 INFOT = 1
-      CALL STPMV( '/', 'N', 'N', 0, A, X, 1 )
+      CALL STPMV( '/', 'N', 'N', 0, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL STPMV( 'U', '/', 'N', 0, A, X, 1 )
+      CALL STPMV( 'U', '/', 'N', 0, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL STPMV( 'U', 'N', '/', 0, A, X, 1 )
+      CALL STPMV( 'U', 'N', '/', 0, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL STPMV( 'U', 'N', 'N', -1, A, X, 1 )
+      CALL STPMV( 'U', 'N', 'N', -1, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL STPMV( 'U', 'N', 'N', 0, A, X, 0 )
+      CALL STPMV( 'U', 'N', 'N', 0, a, x, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
    90 INFOT = 1
-      CALL STRSV( '/', 'N', 'N', 0, A, 1, X, 1 )
+      CALL STRSV( '/', 'N', 'N', 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL STRSV( 'U', '/', 'N', 0, A, 1, X, 1 )
+      CALL STRSV( 'U', '/', 'N', 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL STRSV( 'U', 'N', '/', 0, A, 1, X, 1 )
+      CALL STRSV( 'U', 'N', '/', 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL STRSV( 'U', 'N', 'N', -1, A, 1, X, 1 )
+      CALL STRSV( 'U', 'N', 'N', -1, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL STRSV( 'U', 'N', 'N', 2, A, 1, X, 1 )
+      CALL STRSV( 'U', 'N', 'N', 2, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL STRSV( 'U', 'N', 'N', 0, A, 1, X, 0 )
+      CALL STRSV( 'U', 'N', 'N', 0, a, 1, x, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
   100 INFOT = 1
-      CALL STBSV( '/', 'N', 'N', 0, 0, A, 1, X, 1 )
+      CALL STBSV( '/', 'N', 'N', 0, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL STBSV( 'U', '/', 'N', 0, 0, A, 1, X, 1 )
+      CALL STBSV( 'U', '/', 'N', 0, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL STBSV( 'U', 'N', '/', 0, 0, A, 1, X, 1 )
+      CALL STBSV( 'U', 'N', '/', 0, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL STBSV( 'U', 'N', 'N', -1, 0, A, 1, X, 1 )
+      CALL STBSV( 'U', 'N', 'N', -1, 0, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL STBSV( 'U', 'N', 'N', 0, -1, A, 1, X, 1 )
+      CALL STBSV( 'U', 'N', 'N', 0, -1, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL STBSV( 'U', 'N', 'N', 0, 1, A, 1, X, 1 )
+      CALL STBSV( 'U', 'N', 'N', 0, 1, a, 1, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL STBSV( 'U', 'N', 'N', 0, 0, A, 1, X, 0 )
+      CALL STBSV( 'U', 'N', 'N', 0, 0, a, 1, x, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
   110 INFOT = 1
-      CALL STPSV( '/', 'N', 'N', 0, A, X, 1 )
+      CALL STPSV( '/', 'N', 'N', 0, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL STPSV( 'U', '/', 'N', 0, A, X, 1 )
+      CALL STPSV( 'U', '/', 'N', 0, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL STPSV( 'U', 'N', '/', 0, A, X, 1 )
+      CALL STPSV( 'U', 'N', '/', 0, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL STPSV( 'U', 'N', 'N', -1, A, X, 1 )
+      CALL STPSV( 'U', 'N', 'N', -1, a, x, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL STPSV( 'U', 'N', 'N', 0, A, X, 0 )
+      CALL STPSV( 'U', 'N', 'N', 0, a, x, 0 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
   120 INFOT = 1
-      CALL SGER( -1, 0, ALPHA, X, 1, Y, 1, A, 1 )
+      CALL SGER( -1, 0, ALPHA, x, 1, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SGER( 0, -1, ALPHA, X, 1, Y, 1, A, 1 )
+      CALL SGER( 0, -1, ALPHA, x, 1, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL SGER( 0, 0, ALPHA, X, 0, Y, 1, A, 1 )
+      CALL SGER( 0, 0, ALPHA, x, 0, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL SGER( 0, 0, ALPHA, X, 1, Y, 0, A, 1 )
+      CALL SGER( 0, 0, ALPHA, x, 1, y, 0, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL SGER( 2, 0, ALPHA, X, 1, Y, 1, A, 1 )
+      CALL SGER( 2, 0, ALPHA, x, 1, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
   130 INFOT = 1
-      CALL SSYR( '/', 0, ALPHA, X, 1, A, 1 )
+      CALL SSYR( '/', 0, ALPHA, x, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SSYR( 'U', -1, ALPHA, X, 1, A, 1 )
+      CALL SSYR( 'U', -1, ALPHA, x, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL SSYR( 'U', 0, ALPHA, X, 0, A, 1 )
+      CALL SSYR( 'U', 0, ALPHA, x, 0, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL SSYR( 'U', 2, ALPHA, X, 1, A, 1 )
+      CALL SSYR( 'U', 2, ALPHA, x, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
   140 INFOT = 1
-      CALL SSPR( '/', 0, ALPHA, X, 1, A )
+      CALL SSPR( '/', 0, ALPHA, x, 1, a )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SSPR( 'U', -1, ALPHA, X, 1, A )
+      CALL SSPR( 'U', -1, ALPHA, x, 1, a )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL SSPR( 'U', 0, ALPHA, X, 0, A )
+      CALL SSPR( 'U', 0, ALPHA, x, 0, a )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
   150 INFOT = 1
-      CALL SSYR2( '/', 0, ALPHA, X, 1, Y, 1, A, 1 )
+      CALL SSYR2( '/', 0, ALPHA, x, 1, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SSYR2( 'U', -1, ALPHA, X, 1, Y, 1, A, 1 )
+      CALL SSYR2( 'U', -1, ALPHA, x, 1, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL SSYR2( 'U', 0, ALPHA, X, 0, Y, 1, A, 1 )
+      CALL SSYR2( 'U', 0, ALPHA, x, 0, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL SSYR2( 'U', 0, ALPHA, X, 1, Y, 0, A, 1 )
+      CALL SSYR2( 'U', 0, ALPHA, x, 1, y, 0, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL SSYR2( 'U', 2, ALPHA, X, 1, Y, 1, A, 1 )
+      CALL SSYR2( 'U', 2, ALPHA, x, 1, y, 1, a, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 170
   160 INFOT = 1
-      CALL SSPR2( '/', 0, ALPHA, X, 1, Y, 1, A )
+      CALL SSPR2( '/', 0, ALPHA, x, 1, y, 1, a )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL SSPR2( 'U', -1, ALPHA, X, 1, Y, 1, A )
+      CALL SSPR2( 'U', -1, ALPHA, x, 1, y, 1, a )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL SSPR2( 'U', 0, ALPHA, X, 0, Y, 1, A )
+      CALL SSPR2( 'U', 0, ALPHA, x, 0, y, 1, a )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL SSPR2( 'U', 0, ALPHA, X, 1, Y, 0, A )
+      CALL SSPR2( 'U', 0, ALPHA, x, 1, y, 0, a )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
 *
   170 IF( OK )THEN
@@ -2648,10 +2648,10 @@
 *     End of SCHKE.
 *
       END
-      SUBROUTINE SMAKE( TYPE, UPLO, DIAG, M, N, A, NMAX, AA, LDA, KL,
+      SUBROUTINE SMAKE( TYPE, UPLO, DIAG, M, N, a, NMAX, AA, LDA, KL,
      $                  KU, RESET, TRANSL )
 *
-*  Generates values for an M by N matrix A within the bandwidth
+*  Generates values for an M by N matrix a within the bandwidth
 *  defined by KL and KU.
 *  Stores the values in the array AA in the data structure required
 *  by the routine, with unwanted elements set to rogue value.
@@ -2676,7 +2676,7 @@
       CHARACTER*1        DIAG, UPLO
       CHARACTER*2        TYPE
 *     .. Array Arguments ..
-      REAL               A( NMAX, * ), AA( * )
+      REAL               a( NMAX, * ), AA( * )
 *     .. Local Scalars ..
       INTEGER            I, I1, I2, I3, IBEG, IEND, IOFF, J, KK
       LOGICAL            GEN, LOWER, SYM, TRI, UNIT, UPPER
@@ -2693,7 +2693,7 @@
       LOWER = ( SYM.OR.TRI ).AND.UPLO.EQ.'L'
       UNIT = TRI.AND.DIAG.EQ.'U'
 *
-*     Generate data in array A.
+*     Generate data in array a.
 *
       DO 20 J = 1, N
          DO 10 I = 1, M
@@ -2701,23 +2701,23 @@
      $          THEN
                IF( ( I.LE.J.AND.J - I.LE.KU ).OR.
      $             ( I.GE.J.AND.I - J.LE.KL ) )THEN
-                  A( I, J ) = SBEG( RESET ) + TRANSL
+                  a( I, J ) = SBEG( RESET ) + TRANSL
                ELSE
-                  A( I, J ) = ZERO
+                  a( I, J ) = ZERO
                END IF
                IF( I.NE.J )THEN
                   IF( SYM )THEN
-                     A( J, I ) = A( I, J )
+                     a( J, I ) = a( I, J )
                   ELSE IF( TRI )THEN
-                     A( J, I ) = ZERO
+                     a( J, I ) = ZERO
                   END IF
                END IF
             END IF
    10    CONTINUE
          IF( TRI )
-     $      A( J, J ) = A( J, J ) + ONE
+     $      a( J, J ) = a( J, J ) + ONE
          IF( UNIT )
-     $      A( J, J ) = ONE
+     $      a( J, J ) = ONE
    20 CONTINUE
 *
 *     Store elements in array AS in data structure required by routine.
@@ -2725,7 +2725,7 @@
       IF( TYPE.EQ.'GE' )THEN
          DO 50 J = 1, N
             DO 30 I = 1, M
-               AA( I + ( J - 1 )*LDA ) = A( I, J )
+               AA( I + ( J - 1 )*LDA ) = a( I, J )
    30       CONTINUE
             DO 40 I = M + 1, LDA
                AA( I + ( J - 1 )*LDA ) = ROGUE
@@ -2737,7 +2737,7 @@
                AA( I1 + ( J - 1 )*LDA ) = ROGUE
    60       CONTINUE
             DO 70 I2 = I1, MIN( KL + KU + 1, KU + 1 + M - J )
-               AA( I2 + ( J - 1 )*LDA ) = A( I2 + J - KU - 1, J )
+               AA( I2 + ( J - 1 )*LDA ) = a( I2 + J - KU - 1, J )
    70       CONTINUE
             DO 80 I3 = I2, LDA
                AA( I3 + ( J - 1 )*LDA ) = ROGUE
@@ -2764,7 +2764,7 @@
                AA( I + ( J - 1 )*LDA ) = ROGUE
   100       CONTINUE
             DO 110 I = IBEG, IEND
-               AA( I + ( J - 1 )*LDA ) = A( I, J )
+               AA( I + ( J - 1 )*LDA ) = a( I, J )
   110       CONTINUE
             DO 120 I = IEND + 1, LDA
                AA( I + ( J - 1 )*LDA ) = ROGUE
@@ -2793,7 +2793,7 @@
                AA( I + ( J - 1 )*LDA ) = ROGUE
   140       CONTINUE
             DO 150 I = IBEG, IEND
-               AA( I + ( J - 1 )*LDA ) = A( I + J - KK, J )
+               AA( I + ( J - 1 )*LDA ) = a( I + J - KK, J )
   150       CONTINUE
             DO 160 I = IEND + 1, LDA
                AA( I + ( J - 1 )*LDA ) = ROGUE
@@ -2811,7 +2811,7 @@
             END IF
             DO 180 I = IBEG, IEND
                IOFF = IOFF + 1
-               AA( IOFF ) = A( I, J )
+               AA( IOFF ) = a( I, J )
                IF( I.EQ.J )THEN
                   IF( UNIT )
      $               AA( IOFF ) = ROGUE
@@ -2824,7 +2824,7 @@
 *     End of SMAKE.
 *
       END
-      SUBROUTINE SMVCH( TRANS, M, N, ALPHA, A, NMAX, X, INCX, BETA, Y,
+      SUBROUTINE SMVCH( TRANS, M, N, ALPHA, a, NMAX, x, INCX, BETA, y,
      $                  INCY, YT, G, YY, EPS, ERR, FATAL, NOUT, MV )
 *
 *  Checks the results of the computational tests.
@@ -2844,7 +2844,7 @@
       LOGICAL            FATAL, MV
       CHARACTER*1        TRANS
 *     .. Array Arguments ..
-      REAL               A( NMAX, * ), G( * ), X( * ), Y( * ), YT( * ),
+      REAL               a( NMAX, * ), G( * ), x( * ), y( * ), YT( * ),
      $                   YY( * )
 *     .. Local Scalars ..
       REAL               ERRI
@@ -2876,7 +2876,7 @@
          INCYL = 1
       END IF
 *
-*     Compute expected result in YT using data in A, X and Y.
+*     Compute expected result in YT using data in a, x and y.
 *     Compute gauges in G.
 *
       IY = KY
@@ -2886,19 +2886,19 @@
          JX = KX
          IF( TRAN )THEN
             DO 10 J = 1, NL
-               YT( IY ) = YT( IY ) + A( J, I )*X( JX )
-               G( IY ) = G( IY ) + ABS( A( J, I )*X( JX ) )
+               YT( IY ) = YT( IY ) + a( J, I )*x( JX )
+               G( IY ) = G( IY ) + ABS( a( J, I )*x( JX ) )
                JX = JX + INCXL
    10       CONTINUE
          ELSE
             DO 20 J = 1, NL
-               YT( IY ) = YT( IY ) + A( I, J )*X( JX )
-               G( IY ) = G( IY ) + ABS( A( I, J )*X( JX ) )
+               YT( IY ) = YT( IY ) + a( I, J )*x( JX )
+               G( IY ) = G( IY ) + ABS( a( I, J )*x( JX ) )
                JX = JX + INCXL
    20       CONTINUE
          END IF
-         YT( IY ) = ALPHA*YT( IY ) + BETA*Y( IY )
-         G( IY ) = ABS( ALPHA )*G( IY ) + ABS( BETA*Y( IY ) )
+         YT( IY ) = ALPHA*YT( IY ) + BETA*y( IY )
+         G( IY ) = ABS( ALPHA )*G( IY ) + ABS( BETA*y( IY ) )
          IY = IY + INCYL
    30 CONTINUE
 *
@@ -3076,7 +3076,7 @@
 *     End of SBEG.
 *
       END
-      REAL FUNCTION SDIFF( X, Y )
+      REAL FUNCTION SDIFF( x, y )
 *
 *  Auxiliary routine for test program for Level 2 Blas.
 *
@@ -3084,9 +3084,9 @@
 *     Richard Hanson, Sandia National Labs.
 *
 *     .. Scalar Arguments ..
-      REAL               X, Y
+      REAL               x, y
 *     .. Executable Statements ..
-      SDIFF = X - Y
+      SDIFF = x - y
       RETURN
 *
 *     End of SDIFF.

@@ -18,10 +18,10 @@
 *  Definition:
 *  ===========
 *
-*       SUBROUTINE DLADIV( A, B, C, D, P, Q )
+*       SUBROUTINE DLADIV( a, B, C, D, P, Q )
 * 
 *       .. Scalar Arguments ..
-*       DOUBLE PRECISION   A, B, C, D, P, Q
+*       DOUBLE PRECISION   a, B, C, D, P, Q
 *       ..
 *  
 *
@@ -43,9 +43,9 @@
 *  Arguments:
 *  ==========
 *
-*> \param[in] A
+*> \param[in] a
 *> \verbatim
-*>          A is DOUBLE PRECISION
+*>          a is DOUBLE PRECISION
 *> \endverbatim
 *>
 *> \param[in] B
@@ -88,7 +88,7 @@
 *> \ingroup auxOTHERauxiliary
 *
 *  =====================================================================
-      SUBROUTINE DLADIV( A, B, C, D, P, Q )
+      SUBROUTINE DLADIV( a, B, C, D, P, Q )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -96,7 +96,7 @@
 *     November 2011
 *
 *     .. Scalar Arguments ..
-      DOUBLE PRECISION   A, B, C, D, P, Q
+      DOUBLE PRECISION   a, B, C, D, P, Q
 *     ..
 *
 *  =====================================================================
@@ -112,13 +112,13 @@
       IF( ABS( D ).LT.ABS( C ) ) THEN
          E = D / C
          F = C + D*E
-         P = ( A+B*E ) / F
-         Q = ( B-A*E ) / F
+         P = ( a+B*E ) / F
+         Q = ( B-a*E ) / F
       ELSE
          E = C / D
          F = D + C*E
-         P = ( B+A*E ) / F
-         Q = ( -A+B*E ) / F
+         P = ( B+a*E ) / F
+         Q = ( -a+B*E ) / F
       END IF
 *
       RETURN

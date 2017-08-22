@@ -7,7 +7,7 @@ Navigation:
  left button:           pan (translate in the XY camera's plane)
 
 R : move the camera to initial position
-A : start/stop animation
+a : start/stop animation
 C : clear the animation
 G : add a key frame
 

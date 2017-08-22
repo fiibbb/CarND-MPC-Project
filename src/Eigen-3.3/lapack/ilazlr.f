@@ -18,13 +18,13 @@
 *  Definition:
 *  ===========
 *
-*       INTEGER FUNCTION ILAZLR( M, N, A, LDA )
+*       INTEGER FUNCTION ILAZLR( M, N, a, LDA )
 * 
 *       .. Scalar Arguments ..
 *       INTEGER            M, N, LDA
 *       ..
 *       .. Array Arguments ..
-*       COMPLEX*16         A( LDA, * )
+*       COMPLEX*16         a( LDA, * )
 *       ..
 *  
 *
@@ -33,7 +33,7 @@
 *>
 *> \verbatim
 *>
-*> ILAZLR scans A for its last non-zero row.
+*> ILAZLR scans a for its last non-zero row.
 *> \endverbatim
 *
 *  Arguments:
@@ -42,25 +42,25 @@
 *> \param[in] M
 *> \verbatim
 *>          M is INTEGER
-*>          The number of rows of the matrix A.
+*>          The number of rows of the matrix a.
 *> \endverbatim
 *>
 *> \param[in] N
 *> \verbatim
 *>          N is INTEGER
-*>          The number of columns of the matrix A.
+*>          The number of columns of the matrix a.
 *> \endverbatim
 *>
-*> \param[in] A
+*> \param[in] a
 *> \verbatim
-*>          A is COMPLEX*16 array, dimension (LDA,N)
-*>          The m by n matrix A.
+*>          a is COMPLEX*16 array, dimension (LDA,N)
+*>          The m by n matrix a.
 *> \endverbatim
 *>
 *> \param[in] LDA
 *> \verbatim
 *>          LDA is INTEGER
-*>          The leading dimension of the array A. LDA >= max(1,M).
+*>          The leading dimension of the array a. LDA >= max(1,M).
 *> \endverbatim
 *
 *  Authors:
@@ -76,7 +76,7 @@
 *> \ingroup complex16OTHERauxiliary
 *
 *  =====================================================================
-      INTEGER FUNCTION ILAZLR( M, N, A, LDA )
+      INTEGER FUNCTION ILAZLR( M, N, a, LDA )
 *
 *  -- LAPACK auxiliary routine (version 3.4.1) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -87,7 +87,7 @@
       INTEGER            M, N, LDA
 *     ..
 *     .. Array Arguments ..
-      COMPLEX*16         A( LDA, * )
+      COMPLEX*16         a( LDA, * )
 *     ..
 *
 *  =====================================================================
@@ -104,14 +104,14 @@
 *     Quick test for the common case where one corner is non-zero.
       IF( M.EQ.0 ) THEN
          ILAZLR = M
-      ELSE IF( A(M, 1).NE.ZERO .OR. A(M, N).NE.ZERO ) THEN
+      ELSE IF( a(M, 1).NE.ZERO .OR. a(M, N).NE.ZERO ) THEN
          ILAZLR = M
       ELSE
 *     Scan up each column tracking the last zero row seen.
          ILAZLR = 0
          DO J = 1, N
             I=M
-            DO WHILE((A(MAX(I,1),J).EQ.ZERO).AND.(I.GE.1))
+            DO WHILE((a(MAX(I,1),J).EQ.ZERO).AND.(I.GE.1))
                I=I-1
             ENDDO
             ILAZLR = MAX( ILAZLR, I )

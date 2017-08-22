@@ -98,15 +98,15 @@ Principles : the code modularity is achieved by defining two concepts :
 
 	+ the following common methods
 
-        *** free_matrix(gene_matrix & A, int N)  dealocation of a N sized gene_matrix A
+        *** free_matrix(gene_matrix & a, int N)  dealocation of a N sized gene_matrix a
         *** free_vector(gene_vector & B)  dealocation of a N sized gene_vector B
-        *** matrix_from_stl(gene_matrix & A, stl_matrix & A_stl) copy the content of an stl_matrix A_stl into a gene_matrix A.
-	     The allocation of A is done in this function.
+        *** matrix_from_stl(gene_matrix & a, stl_matrix & A_stl) copy the content of an stl_matrix A_stl into a gene_matrix a.
+	     The allocation of a is done in this function.
 	*** vector_to_stl(gene_vector & B, stl_vector & B_stl)  copy the content of an stl_vector B_stl into a gene_vector B.
 	     The allocation of B is done in this function.
-        *** matrix_to_stl(gene_matrix & A, stl_matrix & A_stl) copy the content of an gene_matrix A into an stl_matrix A_stl.
-             The size of A_STL must corresponds to the size of A.
-        *** vector_to_stl(gene_vector & A, stl_vector & A_stl) copy the content of an gene_vector A into an stl_vector A_stl.
+        *** matrix_to_stl(gene_matrix & a, stl_matrix & A_stl) copy the content of an gene_matrix a into an stl_matrix A_stl.
+             The size of A_STL must corresponds to the size of a.
+        *** vector_to_stl(gene_vector & a, stl_vector & A_stl) copy the content of an gene_vector a into an stl_vector A_stl.
              The size of B_STL must corresponds to the size of B.
 	*** copy_matrix(gene_matrix & source, gene_matrix & cible, int N) : copy the content of source in cible. Both source
 		and cible must be sized NxN.
@@ -115,14 +115,14 @@ Principles : the code modularity is achieved by defining two concepts :
 
 	and the following method corresponding to the action one wants to be benchmarked :
 
-	***  matrix_vector_product(const gene_matrix & A, const gene_vector & B, gene_vector & X, int N)
-	***  matrix_matrix_product(const gene_matrix & A, const gene_matrix & B, gene_matrix & X, int N)
-        ***  ata_product(const gene_matrix & A, gene_matrix & X, int N)
-	***  aat_product(const gene_matrix & A, gene_matrix & X, int N)
-        ***  axpy(real coef, const gene_vector & X, gene_vector & Y, int N)
+	***  matrix_vector_product(const gene_matrix & a, const gene_vector & B, gene_vector & x, int N)
+	***  matrix_matrix_product(const gene_matrix & a, const gene_matrix & B, gene_matrix & x, int N)
+        ***  ata_product(const gene_matrix & a, gene_matrix & x, int N)
+	***  aat_product(const gene_matrix & a, gene_matrix & x, int N)
+        ***  axpy(real coef, const gene_vector & x, gene_vector & y, int N)
 
  The bench algorithm (generic_bench/bench.hh) is templated with an action itself templated with
- an interface. A typical main.cpp source stored in a given library directory libs/A_LIB
+ an interface. a typical main.cpp source stored in a given library directory libs/A_LIB
  looks like :
 
  bench< AN_ACTION < AN_INTERFACE > >( 10 , 1000 , 50 ) ;

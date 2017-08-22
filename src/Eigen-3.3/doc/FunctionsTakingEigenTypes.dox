@@ -91,7 +91,7 @@ In all the previous examples, the functions had to be template functions. This a
 </td></tr></table>
 In the first two calls to inv_cond, no copy occur because the memory layout of the arguments matches the memory layout accepted by Ref<MatrixXf>. However, in the last call, we have a generic expression that will be automatically evaluated into a temporary MatrixXf by the Ref<> object.
 
-A Ref object can also be writable. Here is an example of a function computing the covariance matrix of two input matrices where each row is an observation:
+a Ref object can also be writable. Here is an example of a function computing the covariance matrix of two input matrices where each row is an observation:
 \code
 void cov(const Ref<const MatrixXf> x, const Ref<const MatrixXf> y, Ref<MatrixXf> C)
 {
@@ -133,7 +133,7 @@ In this special case, the example is fine and will be working because both param
 
 \section TopicPlainFunctionsFailing In which cases do functions taking a plain Matrix or Array argument fail?
 
-Here, we consider a slightly modified version of the function given above. This time, we do not want to return the result but pass an additional non-const paramter which allows us to store the result. A first naive implementation might look as follows.
+Here, we consider a slightly modified version of the function given above. This time, we do not want to return the result but pass an additional non-const paramter which allows us to store the result. a first naive implementation might look as follows.
 \code
 // Note: This code is flawed!
 void cov(const MatrixXf& x, const MatrixXf& y, MatrixXf& C)

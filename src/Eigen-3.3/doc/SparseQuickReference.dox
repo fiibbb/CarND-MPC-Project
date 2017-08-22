@@ -65,7 +65,7 @@ i.e either row major or column major. The default is column major. Most arithmet
   sm1.setFromTriplets(TripletList.begin(), TripletList.end());
 \endcode
 </td>
-<td>A complete example is available at \link TutorialSparseFilling Triplet Insertion \endlink.</td>
+<td>a complete example is available at \link TutorialSparseFilling Triplet Insertion \endlink.</td>
 </tr>
 <tr class="alt"> 
 <td> Constant or Random Insertion</td>
@@ -212,7 +212,7 @@ See \ref TutorialSparse_SubMatrices and below for read-write sub-matrices.
 \endcode
 </td>
 <td>
-A inner vector is either a row (for row-major) or a column (for column-major).\n
+a inner vector is either a row (for row-major) or a column (for column-major).\n
 As stated earlier, for a read-write sub-matrix (RW), the evaluation can be done in a matrix with different storage order.
 </td>
 </tr>
@@ -251,7 +251,7 @@ sm1.outerIndexPtr(); // Pointer to the beginning of each inner vector
 <td>
 If the matrix is not in compressed form, makeCompressed() should be called before.\n
 Note that these functions are mostly provided for interoperability purposes with external libraries.\n
-A better access to the values of the matrix is done by using the InnerIterator class as described in \link TutorialSparse the Tutorial Sparse \endlink section</td>
+a better access to the values of the matrix is done by using the InnerIterator class as described in \link TutorialSparse the Tutorial Sparse \endlink section</td>
 </tr>
 <tr class="alt"><td colspan="2">Mapping external buffers</td></tr>
 <tr class="alt">

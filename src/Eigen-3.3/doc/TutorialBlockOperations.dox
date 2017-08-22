@@ -3,7 +3,7 @@ namespace Eigen {
 /** \eigenManualPage TutorialBlockOperations Block operations
 
 This page explains the essentials of block operations.
-A block is a rectangular part of a matrix or array. Blocks expressions can be used both
+a block is a rectangular part of a matrix or array. Blocks expressions can be used both
 as rvalues and as lvalues. As usual with Eigen expressions, this abstraction has zero runtime cost
 provided that you let your compiler optimize.
 

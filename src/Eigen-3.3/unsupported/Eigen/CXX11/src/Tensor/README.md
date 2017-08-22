@@ -64,7 +64,7 @@ owned by another part of your code.  It allows to view any piece of allocated
 memory as a Tensor.  Instances of this class do not own the memory where the
 data are stored.
 
-A TensorMap is not resizable because it does not own the memory where its data
+a TensorMap is not resizable because it does not own the memory where its data
 are stored.
 
 #### Constructor TensorMap<Tensor<data_type, rank>>(data, size0, size1, ...)
@@ -314,45 +314,45 @@ following code does not do what you may think:
 
 While in the examples above calling ```eval()``` does not make a difference in
 performance, in other cases it can make a huge difference.  In the expression
-below the ```broadcast()``` expression causes the ```X.maximum()``` expression
+below the ```broadcast()``` expression causes the ```x.maximum()``` expression
 to be evaluated many times:
 
-    Tensor<...> X ...;
-    Tensor<...> Y = ((X - X.maximum(depth_dim).reshape(dims2d).broadcast(bcast))
+    Tensor<...> x ...;
+    Tensor<...> y = ((x - x.maximum(depth_dim).reshape(dims2d).broadcast(bcast))
                      * beta).exp();
 
 Inserting a call to ```eval()``` between the ```maximum()``` and
 ```reshape()``` calls guarantees that maximum() is only computed once and
 greatly speeds-up execution:
 
-    Tensor<...> Y =
-      ((X - X.maximum(depth_dim).eval().reshape(dims2d).broadcast(bcast))
+    Tensor<...> y =
+      ((x - x.maximum(depth_dim).eval().reshape(dims2d).broadcast(bcast))
         * beta).exp();
 
-In the other example below, the tensor ```Y``` is both used in the expression
+In the other example below, the tensor ```y``` is both used in the expression
 and its assignment.  This is an aliasing problem and if the evaluation is not
-done in the right order Y will be updated incrementally during the evaluation
+done in the right order y will be updated incrementally during the evaluation
 resulting in bogus results:
 
-     Tensor<...> Y ...;
-     Y = Y / (Y.sum(depth_dim).reshape(dims2d).broadcast(bcast));
+     Tensor<...> y ...;
+     y = y / (y.sum(depth_dim).reshape(dims2d).broadcast(bcast));
 
 Inserting a call to ```eval()``` between the ```sum()``` and ```reshape()```
-expressions ensures that the sum is computed before any updates to ```Y``` are
+expressions ensures that the sum is computed before any updates to ```y``` are
 done.
 
-     Y = Y / (Y.sum(depth_dim).eval().reshape(dims2d).broadcast(bcast));
+     y = y / (y.sum(depth_dim).eval().reshape(dims2d).broadcast(bcast));
 
 Note that an eval around the full right hand side expression is not needed
 because the generated has to compute the i-th value of the right hand side
 before assigning it to the left hand side.
 
-However, if you were assigning the expression value to a shuffle of ```Y```
+However, if you were assigning the expression value to a shuffle of ```y```
 then you would need to force an eval for correctness by adding an ```eval()```
 call for the right hand side:
 
-     Y.shuffle(...) =
-        (Y / (Y.sum(depth_dim).eval().reshape(dims2d).broadcast(bcast))).eval();
+     y.shuffle(...) =
+        (y / (y.sum(depth_dim).eval().reshape(dims2d).broadcast(bcast))).eval();
 
 
 #### Assigning to a TensorRef.
@@ -360,7 +360,7 @@ call for the right hand side:
 If you need to access only a few elements from the value of an expression you
 can avoid materializing the value in a full tensor by using a TensorRef.
 
-A TensorRef is a small wrapper class for any Eigen Operation.  It provides
+a TensorRef is a small wrapper class for any Eigen Operation.  It provides
 overloads for the ```()``` operator that let you access individual values in
 the expression.  TensorRef is convenient, because the Operation themselves do
 not provide a way to access individual elements.
@@ -540,7 +540,7 @@ the tensor dimensions.  The actual type of the ```size()``` result is
 
 ### Getting Dimensions From An Operation
 
-A few operations provide ```dimensions()``` directly,
+a few operations provide ```dimensions()``` directly,
 e.g. ```TensorReslicingOp```.  Most operations defer calculating dimensions
 until the operation is being evaluated.  If you need access to the dimensions
 of a deferred operation, you can wrap it in a TensorRef (see Assigning to a
@@ -1026,7 +1026,7 @@ multidimensional case.
 
 ## Reduction Operations
 
-A *Reduction* operation returns a tensor with fewer dimensions than the
+a *Reduction* operation returns a tensor with fewer dimensions than the
 original tensor.  The values in the returned tensor are computed by applying a
 *reduction operator* to slices of values from the original tensor.  You specify
 the dimensions along which the slices are made.
@@ -1170,7 +1170,7 @@ in TensorFunctors.h for information on how to implement a reduction operator.
 
 ## Scan Operations
 
-A *Scan* operation returns a tensor with the same dimensions as the original
+a *Scan* operation returns a tensor with the same dimensions as the original
 tensor. The operation performs an inclusive scan along the specified
 axis, which means it computes a running total along the axis for a given
 reduction operation.
@@ -1425,7 +1425,7 @@ the input tensor.
 
 ### <Operation> chip(const Index offset, const Index dim)
 
-A chip is a special kind of slice. It is the subtensor at the given offset in
+a chip is a special kind of slice. It is the subtensor at the given offset in
 the dimension dim. The returned tensor has one fewer dimension than the input
 tensor: the dimension dim is removed.
 

@@ -18,14 +18,14 @@
 *  Definition:
 *  ===========
 *
-*       SUBROUTINE CLARFG( N, ALPHA, X, INCX, TAU )
+*       SUBROUTINE CLARFG( N, ALPHA, x, INCX, TAU )
 * 
 *       .. Scalar Arguments ..
 *       INTEGER            INCX, N
 *       COMPLEX            ALPHA, TAU
 *       ..
 *       .. Array Arguments ..
-*       COMPLEX            X( * )
+*       COMPLEX            x( * )
 *       ..
 *  
 *
@@ -71,9 +71,9 @@
 *>          On exit, it is overwritten with the value beta.
 *> \endverbatim
 *>
-*> \param[in,out] X
+*> \param[in,out] x
 *> \verbatim
-*>          X is COMPLEX array, dimension
+*>          x is COMPLEX array, dimension
 *>                         (1+(N-2)*abs(INCX))
 *>          On entry, the vector x.
 *>          On exit, it is overwritten with the vector v.
@@ -82,7 +82,7 @@
 *> \param[in] INCX
 *> \verbatim
 *>          INCX is INTEGER
-*>          The increment between elements of X. INCX > 0.
+*>          The increment between elements of x. INCX > 0.
 *> \endverbatim
 *>
 *> \param[out] TAU
@@ -104,7 +104,7 @@
 *> \ingroup complexOTHERauxiliary
 *
 *  =====================================================================
-      SUBROUTINE CLARFG( N, ALPHA, X, INCX, TAU )
+      SUBROUTINE CLARFG( N, ALPHA, x, INCX, TAU )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -116,7 +116,7 @@
       COMPLEX            ALPHA, TAU
 *     ..
 *     .. Array Arguments ..
-      COMPLEX            X( * )
+      COMPLEX            x( * )
 *     ..
 *
 *  =====================================================================
@@ -147,7 +147,7 @@
          RETURN
       END IF
 *
-      XNORM = SCNRM2( N-1, X, INCX )
+      XNORM = SCNRM2( N-1, x, INCX )
       ALPHR = REAL( ALPHA )
       ALPHI = AIMAG( ALPHA )
 *
@@ -167,11 +167,11 @@
          KNT = 0
          IF( ABS( BETA ).LT.SAFMIN ) THEN
 *
-*           XNORM, BETA may be inaccurate; scale X and recompute them
+*           XNORM, BETA may be inaccurate; scale x and recompute them
 *
    10       CONTINUE
             KNT = KNT + 1
-            CALL CSSCAL( N-1, RSAFMN, X, INCX )
+            CALL CSSCAL( N-1, RSAFMN, x, INCX )
             BETA = BETA*RSAFMN
             ALPHI = ALPHI*RSAFMN
             ALPHR = ALPHR*RSAFMN
@@ -180,13 +180,13 @@
 *
 *           New BETA is at most 1, at least SAFMIN
 *
-            XNORM = SCNRM2( N-1, X, INCX )
+            XNORM = SCNRM2( N-1, x, INCX )
             ALPHA = CMPLX( ALPHR, ALPHI )
             BETA = -SIGN( SLAPY3( ALPHR, ALPHI, XNORM ), ALPHR )
          END IF
          TAU = CMPLX( ( BETA-ALPHR ) / BETA, -ALPHI / BETA )
          ALPHA = CLADIV( CMPLX( ONE ), ALPHA-BETA )
-         CALL CSCAL( N-1, ALPHA, X, INCX )
+         CALL CSCAL( N-1, ALPHA, x, INCX )
 *
 *        If ALPHA is subnormal, it may lose relative accuracy
 *

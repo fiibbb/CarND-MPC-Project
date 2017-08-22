@@ -6,7 +6,7 @@ namespace Eigen {
 \b Disclaimer: this page is about an \b experimental feature in %Eigen.
 
 Staring from CUDA 5.0, the CUDA compiler, \c nvcc, is able to properly parse %Eigen's code (almost).
-A few adaptations of the %Eigen's code already allows to use some parts of %Eigen in your own CUDA kernels.
+a few adaptations of the %Eigen's code already allows to use some parts of %Eigen in your own CUDA kernels.
 To this end you need the devel branch of %Eigen, CUDA 5.0 or greater with GCC.
 
 Known issues:

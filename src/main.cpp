@@ -65,6 +65,35 @@ Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
   return result;
 }
 
+// In vehicle coordinates the cross-track error error cte is
+// the intercept at x = 0
+double evaluateCte(Eigen::VectorXd coeffs) {
+  return polyeval(coeffs, 0);
+}
+
+// In vehicle coordinates the orientation error epsi is
+// -atan(c1 + c2*x + c3* x^2), but the car is always at x=0.
+double evaluateEpsi(Eigen::VectorXd coeffs) {
+  return -atan(coeffs[1]);
+}
+
+
+Eigen::MatrixXd transformGlobalToLocal(double x, double y, double psi, const vector<double> & ptsx, const vector<double> & ptsy) {
+
+  assert(ptsx.size() == ptsy.size());
+  unsigned len = ptsx.size();
+
+  auto waypoints = Eigen::MatrixXd(2,len);
+
+  for (auto i=0; i<len ; ++i){
+    waypoints(0,i) =   cos(psi) * (ptsx[i] - x) + sin(psi) * (ptsy[i] - y);
+    waypoints(1,i) =  -sin(psi) * (ptsx[i] - x) + cos(psi) * (ptsy[i] - y);
+  }
+
+  return waypoints;
+
+}
+
 int main() {
   uWS::Hub h;
 
@@ -92,19 +121,38 @@ int main() {
           double psi = j[1]["psi"];
           double v = j[1]["speed"];
 
-          /*
-          * TODO: Calculate steering angle and throttle using MPC.
-          *
-          * Both are in between [-1, 1].
-          *
-          */
-          double steer_value;
-          double throttle_value;
+          // Affine transformation. Translate to car coordinate system then rotate to the car's orientation.
+          // Local coordinates take capital letters. The reference trajectory in local coordinates:
+          Eigen::MatrixXd waypoints = transformGlobalToLocal(px,py,psi,ptsx,ptsy);
+          Eigen::VectorXd Ptsx = waypoints.row(0);
+          Eigen::VectorXd Ptsy = waypoints.row(1);
+
+          // fit a 3rd order polynomial to the waypoints
+          auto coeffs = polyfit(Ptsx, Ptsy, 3);
+
+          // get cross-track error from fit
+          double cte = evaluateCte(coeffs);
+
+          // get orientation error from fit
+          double epsi = evaluateEpsi(coeffs);
+
+          // state in vehicle coordinates: x,y and orientation are always zero
+          Eigen::VectorXd state(6);
+          state << 0, 0, 0, v, cte, epsi;
+
+          // compute the optimal trajectory
+          Solution sol = mpc.Solve(state, coeffs);
+
+          double steer_value = sol.delta.at(latency);
+          double throttle_value= sol.a.at(latency);
+          mpc.prev_delta = steer_value;
+          mpc.prev_a = throttle_value;
 
           json msgJson;
-          // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
-          // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-          msgJson["steering_angle"] = steer_value;
+          // mathematically positive angles are negative in the simulator, therefore we have to feed the negative steer_value.
+          // WARNING: the current simulator expects angles as a fraction of the max angle, here 25 degrees, not radians! It must be in the range [-1,1].
+          // 25 degrees in radians are 0.436332.
+          msgJson["steering_angle"] = -steer_value/0.436332;
           msgJson["throttle"] = throttle_value;
 
           //Display the MPC predicted trajectory 
@@ -114,19 +162,23 @@ int main() {
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Green line
 
-          msgJson["mpc_x"] = mpc_x_vals;
-          msgJson["mpc_y"] = mpc_y_vals;
+          // Display the MPC predicted trajectory
+          msgJson["mpc_x"] = sol.x;
+          msgJson["mpc_y"] = sol.y;
 
           //Display the waypoints/reference line
           vector<double> next_x_vals;
           vector<double> next_y_vals;
 
+          for (unsigned i=0 ; i < ptsx.size(); ++i) {
+            next_x_vals.push_back(Ptsx(i));
+            next_y_vals.push_back(Ptsy(i));
+          }
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Yellow line
 
           msgJson["next_x"] = next_x_vals;
           msgJson["next_y"] = next_y_vals;
-
 
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
@@ -139,7 +191,8 @@ int main() {
           //
           // NOTE: REMEMBER TO SET THIS TO 100 MILLISECONDS BEFORE
           // SUBMITTING.
-          this_thread::sleep_for(chrono::milliseconds(100));
+          int milliseconds_latency = 100;
+          this_thread::sleep_for(chrono::milliseconds(milliseconds_latency));
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }
       } else {

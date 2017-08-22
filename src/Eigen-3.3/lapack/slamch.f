@@ -150,38 +150,38 @@
 *> \details
 *> \b Purpose:
 *> \verbatim
-*> SLAMC3  is intended to force  A  and  B  to be stored prior to doing
-*> the addition of  A  and  B ,  for use in situations where optimizers
+*> SLAMC3  is intended to force  a  and  B  to be stored prior to doing
+*> the addition of  a  and  B ,  for use in situations where optimizers
 *> might hold one of these in a register.
 *> \endverbatim
 *> \author LAPACK is a software package provided by Univ. of Tennessee, Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..
 *> \date November 2011
 *> \ingroup auxOTHERauxiliary
 *>
-*> \param[in] A
+*> \param[in] a
 *> \verbatim
 *> \endverbatim
 *>
 *> \param[in] B
 *> \verbatim
-*>          The values A and B.
+*>          The values a and B.
 *> \endverbatim
 *>
 *
-      REAL             FUNCTION SLAMC3( A, B )
+      REAL             FUNCTION SLAMC3( a, B )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *     Univ. of Tennessee, Univ. of California Berkeley and NAG Ltd..
 *     November 2010
 *
 *     .. Scalar Arguments ..
-      REAL               A, B
+      REAL               a, B
 *     ..
 * =====================================================================
 *
 *     .. Executable Statements ..
 *
-      SLAMC3 = A + B
+      SLAMC3 = a + B
 *
       RETURN
 *

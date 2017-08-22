@@ -22,7 +22,7 @@ vectorization etc., and refer to that page here.
 
 \section TopicSetting The setting
 
-A circulant matrix is a matrix where each column is the same as the
+a circulant matrix is a matrix where each column is the same as the
 column to the left, except that it is cyclically shifted downwards.
 For example, here is a 4-by-4 circulant matrix:
 \f[ \begin{bmatrix} 
@@ -31,7 +31,7 @@ For example, here is a 4-by-4 circulant matrix:
     4 & 2 & 1 & 8 \\
     8 & 4 & 2 & 1
 \end{bmatrix} \f]
-A circulant matrix is uniquely determined by its first column. We wish
+a circulant matrix is uniquely determined by its first column. We wish
 to write a function \c makeCirculant which, given the first column,
 returns an expression representing the circulant matrix.
 
@@ -56,9 +56,9 @@ to the \c makeCirculant function.
 
 \section TopicTraits The traits class
 
-For every expression class \c X, there should be a traits class 
-\c Traits<X> in the \c Eigen::internal namespace containing
-information about \c X known as compile time.
+For every expression class \c x, there should be a traits class
+\c Traits<x> in the \c Eigen::internal namespace containing
+information about \c x known as compile time.
 
 As explained in \ref TopicSetting, we designed the \c Circulant
 expression class to refer to dense matrices. The entries of the
@@ -126,7 +126,7 @@ simply creates an expression object and returns it.
 \include make_circulant.cpp.entry
 
 
-\section TopicMain A simple main function for testing
+\section TopicMain a simple main function for testing
 
 Finally, a short \c main function that shows how the \c makeCirculant
 function can be called.

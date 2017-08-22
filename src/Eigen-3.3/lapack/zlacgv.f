@@ -18,13 +18,13 @@
 *  Definition:
 *  ===========
 *
-*       SUBROUTINE ZLACGV( N, X, INCX )
+*       SUBROUTINE ZLACGV( N, x, INCX )
 * 
 *       .. Scalar Arguments ..
 *       INTEGER            INCX, N
 *       ..
 *       .. Array Arguments ..
-*       COMPLEX*16         X( * )
+*       COMPLEX*16         x( * )
 *       ..
 *  
 *
@@ -42,21 +42,21 @@
 *> \param[in] N
 *> \verbatim
 *>          N is INTEGER
-*>          The length of the vector X.  N >= 0.
+*>          The length of the vector x.  N >= 0.
 *> \endverbatim
 *>
-*> \param[in,out] X
+*> \param[in,out] x
 *> \verbatim
-*>          X is COMPLEX*16 array, dimension
+*>          x is COMPLEX*16 array, dimension
 *>                         (1+(N-1)*abs(INCX))
 *>          On entry, the vector of length N to be conjugated.
-*>          On exit, X is overwritten with conjg(X).
+*>          On exit, x is overwritten with conjg(x).
 *> \endverbatim
 *>
 *> \param[in] INCX
 *> \verbatim
 *>          INCX is INTEGER
-*>          The spacing between successive elements of X.
+*>          The spacing between successive elements of x.
 *> \endverbatim
 *
 *  Authors:
@@ -72,7 +72,7 @@
 *> \ingroup complex16OTHERauxiliary
 *
 *  =====================================================================
-      SUBROUTINE ZLACGV( N, X, INCX )
+      SUBROUTINE ZLACGV( N, x, INCX )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -83,7 +83,7 @@
       INTEGER            INCX, N
 *     ..
 *     .. Array Arguments ..
-      COMPLEX*16         X( * )
+      COMPLEX*16         x( * )
 *     ..
 *
 * =====================================================================
@@ -98,14 +98,14 @@
 *
       IF( INCX.EQ.1 ) THEN
          DO 10 I = 1, N
-            X( I ) = DCONJG( X( I ) )
+            x( I ) = DCONJG( x( I ) )
    10    CONTINUE
       ELSE
          IOFF = 1
          IF( INCX.LT.0 )
      $      IOFF = 1 - ( N-1 )*INCX
          DO 20 I = 1, N
-            X( IOFF ) = DCONJG( X( IOFF ) )
+            x( IOFF ) = DCONJG( x( IOFF ) )
             IOFF = IOFF + INCX
    20    CONTINUE
       END IF

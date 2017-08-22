@@ -104,30 +104,30 @@ In Eigen 2 you had to play with the part, extract, and marked functions to deal 
 <table class="manual">
 <tr><th>Eigen 2</th><th>Eigen 3</th></tr>
 <tr><td>\code
-A.part<UpperTriangular>();
-A.part<StrictlyLowerTriangular>(); \endcode</td>
+a.part<UpperTriangular>();
+a.part<StrictlyLowerTriangular>(); \endcode</td>
 <td>\code
-A.triangularView<Upper>()
-A.triangularView<StrictlyLower>()\endcode</td></tr>
+a.triangularView<Upper>()
+a.triangularView<StrictlyLower>()\endcode</td></tr>
 <tr><td>\code
-A.extract<UpperTriangular>();
-A.extract<StrictlyLowerTriangular>();\endcode</td>
+a.extract<UpperTriangular>();
+a.extract<StrictlyLowerTriangular>();\endcode</td>
 <td>\code
-A.triangularView<Upper>()
-A.triangularView<StrictlyLower>()\endcode</td></tr>
+a.triangularView<Upper>()
+a.triangularView<StrictlyLower>()\endcode</td></tr>
 <tr><td>\code
-A.marked<UpperTriangular>();
-A.marked<StrictlyLowerTriangular>();\endcode</td>
+a.marked<UpperTriangular>();
+a.marked<StrictlyLowerTriangular>();\endcode</td>
 <td>\code
-A.triangularView<Upper>()
-A.triangularView<StrictlyLower>()\endcode</td></tr>
+a.triangularView<Upper>()
+a.triangularView<StrictlyLower>()\endcode</td></tr>
 <tr><td colspan="2"></td></tr>
 <tr><td>\code
-A.part<SelfAdfjoint|UpperTriangular>();
-A.extract<SelfAdfjoint|LowerTriangular>();\endcode</td>
+a.part<SelfAdfjoint|UpperTriangular>();
+a.extract<SelfAdfjoint|LowerTriangular>();\endcode</td>
 <td>\code
-A.selfadjointView<Upper>()
-A.selfadjointView<Lower>()\endcode</td></tr>
+a.selfadjointView<Upper>()
+a.selfadjointView<Lower>()\endcode</td></tr>
 <tr><td colspan="2"></td></tr>
 <tr><td>\code
 UpperTriangular
@@ -153,7 +153,7 @@ StrictlyLower
 
 <table class="manual">
 <tr><th>Eigen 2</th><th>Eigen 3</th></tr>
-<tr><td>\code A.triangularSolveInPlace<XxxTriangular>(Y);\endcode</td><td>\code A.triangularView<Xxx>().solveInPlace(Y);\endcode</td></tr>
+<tr><td>\code a.triangularSolveInPlace<XxxTriangular>(y);\endcode</td><td>\code a.triangularView<Xxx>().solveInPlace(y);\endcode</td></tr>
 </table>
 
 
@@ -193,29 +193,29 @@ Some of Eigen 2's matrix decompositions have been renamed in Eigen 3, while some
 
 <table class="manual">
 <tr><th>Eigen 2</th><th>Eigen 3</th><th>Notes</th></tr>
-<tr><td>\code A.lu();\endcode</td>
-<td>\code A.fullPivLu();\endcode</td>
-<td class="alt">Now A.lu() returns a PartialPivLU</td></tr>
-<tr><td>\code A.lu().solve(B,&X);\endcode</td>
-<td>\code X = A.lu().solve(B);
- X = A.fullPivLu().solve(B);\endcode</td>
+<tr><td>\code a.lu();\endcode</td>
+<td>\code a.fullPivLu();\endcode</td>
+<td class="alt">Now a.lu() returns a PartialPivLU</td></tr>
+<tr><td>\code a.lu().solve(B,&x);\endcode</td>
+<td>\code x = a.lu().solve(B);
+ x = a.fullPivLu().solve(B);\endcode</td>
 <td class="alt">The returned by value is fully optimized</td></tr>
-<tr><td>\code A.llt().solve(B,&X);\endcode</td>
-<td>\code X = A.llt().solve(B);
- X = A.selfadjointView<Lower>.llt().solve(B);
- X = A.selfadjointView<Upper>.llt().solve(B);\endcode</td>
+<tr><td>\code a.llt().solve(B,&x);\endcode</td>
+<td>\code x = a.llt().solve(B);
+ x = a.selfadjointView<Lower>.llt().solve(B);
+ x = a.selfadjointView<Upper>.llt().solve(B);\endcode</td>
 <td class="alt">The returned by value is fully optimized and \n
 the selfadjointView API allows you to select the \n
 triangular part to work on (default is lower part)</td></tr>
-<tr><td>\code A.llt().solveInPlace(B);\endcode</td>
-<td>\code B = A.llt().solve(B);
- B = A.selfadjointView<Lower>.llt().solve(B);
- B = A.selfadjointView<Upper>.llt().solve(B);\endcode</td>
+<tr><td>\code a.llt().solveInPlace(B);\endcode</td>
+<td>\code B = a.llt().solve(B);
+ B = a.selfadjointView<Lower>.llt().solve(B);
+ B = a.selfadjointView<Upper>.llt().solve(B);\endcode</td>
 <td class="alt">In place solving</td></tr>
-<tr><td>\code A.ldlt().solve(B,&X);\endcode</td>
-<td>\code X = A.ldlt().solve(B);
- X = A.selfadjointView<Lower>.ldlt().solve(B);
- X = A.selfadjointView<Upper>.ldlt().solve(B);\endcode</td>
+<tr><td>\code a.ldlt().solve(B,&x);\endcode</td>
+<td>\code x = a.ldlt().solve(B);
+ x = a.selfadjointView<Lower>.ldlt().solve(B);
+ x = a.selfadjointView<Upper>.ldlt().solve(B);\endcode</td>
 <td class="alt">The returned by value is fully optimized and \n
 the selfadjointView API allows you to select the \n
 triangular part to work on</td></tr>
@@ -265,7 +265,7 @@ The \link TopicPreprocessorDirectivesPerformance EIGEN_DONT_ALIGN \endlink optio
 
 \section AlignedMap Aligned Map objects
 
-A common issue with Eigen 2 was that when mapping an array with Map, there was no way to tell Eigen that your array was aligned. There was a ForceAligned option but it didn't mean that; it was just confusing and has been removed.
+a common issue with Eigen 2 was that when mapping an array with Map, there was no way to tell Eigen that your array was aligned. There was a ForceAligned option but it didn't mean that; it was just confusing and has been removed.
 
 New in Eigen3 is the #Aligned option. See the documentation of class Map. Use it like this:
 \code

@@ -17,7 +17,7 @@ We say that a matrix is stored in \b row-major order if it is stored row by row.
 stored first, followed by the entire second row, and so on. Consider for example the matrix
 
 \f[
-A = \begin{bmatrix}
+a = \begin{bmatrix}
 8 & 2 & 2 & 9 \\
 9 & 1 & 4 & 4 \\
 3 & 5 & 4 & 5

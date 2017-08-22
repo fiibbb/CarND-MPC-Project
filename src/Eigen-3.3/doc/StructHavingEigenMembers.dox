@@ -67,7 +67,7 @@ class Foo
 Foo *foo = new Foo;
 \endcode
 
-A Eigen::Vector2d consists of 2 doubles, which is 128 bits. Which is exactly the size of a SSE packet, which makes it possible to use SSE for all sorts of operations on this vector. But SSE instructions (at least the ones that %Eigen uses, which are the fast ones) require 128-bit alignment. Otherwise you get a segmentation fault.
+a Eigen::Vector2d consists of 2 doubles, which is 128 bits. Which is exactly the size of a SSE packet, which makes it possible to use SSE for all sorts of operations on this vector. But SSE instructions (at least the ones that %Eigen uses, which are the fast ones) require 128-bit alignment. Otherwise you get a segmentation fault.
 
 For this reason, Eigen takes care by itself to require 128-bit alignment for Eigen::Vector2d, by doing two things:
 \li Eigen requires 128-bit alignment for the Eigen::Vector2d's array (of 2 doubles). With GCC, this is done with a __attribute__ ((aligned(16))).

@@ -157,7 +157,7 @@
      +                  0.0E0, 1.0E0, 0.0E0/
 *     INPUT FOR MODIFIED GIVENS
       DATA DAB/ .1E0,.3E0,1.2E0,.2E0,
-     A          .7E0, .2E0, .6E0, 4.2E0,
+     a          .7E0, .2E0, .6E0, 4.2E0,
      B          0.E0,0.E0,0.E0,0.E0,
      C          4.E0, -1.E0, 2.E0, 4.E0,
      D          6.E-10, 2.E-2, 1.E5, 10.E0,
@@ -167,7 +167,7 @@
      H          4.E0, -2.E0, 8.E0, 4.E0    /
 *    TRUE RESULTS FOR MODIFIED GIVENS
       DATA DTRUE/0.E0,0.E0, 1.3E0, .2E0, 0.E0,0.E0,0.E0, .5E0, 0.E0,
-     A           0.E0,0.E0, 4.5E0, 4.2E0, 1.E0, .5E0, 0.E0,0.E0,0.E0,
+     a           0.E0,0.E0, 4.5E0, 4.2E0, 1.E0, .5E0, 0.E0,0.E0,0.E0,
      B           0.E0,0.E0,0.E0,0.E0, -2.E0, 0.E0,0.E0,0.E0,0.E0,
      C           0.E0,0.E0,0.E0, 4.E0, -1.E0, 0.E0,0.E0,0.E0,0.E0,
      D           0.E0, 15.E-3, 0.E0, 10.E0, -1.E0, 0.E0, -1.E-4,
@@ -368,10 +368,10 @@
       COMMON            /COMBLA/ICASE, N, INCX, INCY, PASS
 *     .. Data statements ..
       EQUIVALENCE (DT19X(1,1,1),DT19XA(1,1,1)),(DT19X(1,1,5),
-     A   DT19XB(1,1,1)),(DT19X(1,1,9),DT19XC(1,1,1)),
+     a   DT19XB(1,1,1)),(DT19X(1,1,9),DT19XC(1,1,1)),
      B   (DT19X(1,1,13),DT19XD(1,1,1))
       EQUIVALENCE (DT19Y(1,1,1),DT19YA(1,1,1)),(DT19Y(1,1,5),
-     A   DT19YB(1,1,1)),(DT19Y(1,1,9),DT19YC(1,1,1)),
+     a   DT19YB(1,1,1)),(DT19Y(1,1,9),DT19YC(1,1,1)),
      B   (DT19Y(1,1,13),DT19YD(1,1,1))
 
       DATA              SA/0.3E0/
@@ -454,12 +454,12 @@
 *                         FOR DROTM
 *
       DATA DPAR/-2.E0,  0.E0,0.E0,0.E0,0.E0,
-     A          -1.E0,  2.E0, -3.E0, -4.E0,  5.E0,
+     a          -1.E0,  2.E0, -3.E0, -4.E0,  5.E0,
      B           0.E0,  0.E0,  2.E0, -3.E0,  0.E0,
      C           1.E0,  5.E0,  2.E0,  0.E0, -4.E0/
-*                        TRUE X RESULTS F0R ROTATIONS DROTM
+*                        TRUE x RESULTS F0R ROTATIONS DROTM
       DATA DT19XA/.6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -476,7 +476,7 @@
      O           3.5E0,  -.4E0, -2.2E0,  4.7E0,          0.E0,0.E0,0.E0/
 *
       DATA DT19XB/.6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -493,7 +493,7 @@
      O           3.8E0,   .1E0, -3.1E0,   .8E0,  4.8E0,  -.3E0, -1.5E0 /
 *
       DATA DT19XC/.6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -510,7 +510,7 @@
      O           3.7E0,   .1E0, -2.2E0,   .8E0,  3.6E0,  -.3E0, -1.5E0 /
 *
       DATA DT19XD/.6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .6E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -525,9 +525,9 @@
      M           -.8E0, -1.0E0,  1.4E0, -1.6E0,          0.E0,0.E0,0.E0,
      N           -.9E0,  -.8E0,  1.3E0, -1.6E0,          0.E0,0.E0,0.E0,
      O           3.5E0,   .8E0, -3.1E0,  4.8E0,          0.E0,0.E0,0.E0/
-*                        TRUE Y RESULTS FOR ROTATIONS DROTM
+*                        TRUE y RESULTS FOR ROTATIONS DROTM
       DATA DT19YA/.5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -544,7 +544,7 @@
      O          -2.6E0,  3.5E0,  -.7E0, -3.6E0,          0.E0,0.E0,0.E0/
 *
       DATA DT19YB/.5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -561,7 +561,7 @@
      O          -1.6E0,  -.9E0, -2.1E0,   .7E0,  2.9E0,   .2E0, -3.8E0 /
 *
       DATA DT19YC/.5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -578,7 +578,7 @@
      O          -1.6E0,  2.7E0,  -.7E0, -3.4E0,          0.E0,0.E0,0.E0/
 *
       DATA DT19YD/.5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
-     A            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
+     a            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      B            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      C            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
      D            .5E0,                  0.E0,0.E0,0.E0,0.E0,0.E0,0.E0,
@@ -947,7 +947,7 @@
 *     ************************* STEST1 *****************************
 *
 *     THIS IS AN INTERFACE SUBROUTINE TO ACCOMODATE THE FORTRAN
-*     REQUIREMENT THAT WHEN A DUMMY ARGUMENT IS AN ARRAY, THE
+*     REQUIREMENT THAT WHEN a DUMMY ARGUMENT IS AN ARRAY, THE
 *     ACTUAL ARGUMENT MUST ALSO BE AN ARRAY OR AN ARRAY ELEMENT.
 *
 *     C.L. LAWSON, JPL, 1978 DEC 6

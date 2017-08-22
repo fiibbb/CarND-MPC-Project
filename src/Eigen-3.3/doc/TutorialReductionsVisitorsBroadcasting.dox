@@ -109,7 +109,7 @@ Array, applying the reduction operation on each column or row and
 returning a column or row vector with the corresponding values. Partial reductions are applied 
 with \link DenseBase::colwise() colwise() \endlink or \link DenseBase::rowwise() rowwise() \endlink.
 
-A simple example is obtaining the maximum of the elements 
+a simple example is obtaining the maximum of the elements
 in each column in a given matrix, storing the result in a row vector:
 
 <table class="example">
@@ -174,7 +174,7 @@ The concept behind broadcasting is similar to partial reductions, with the diffe
 constructs an expression where a vector (column or row) is interpreted as a matrix by replicating it in 
 one direction.
 
-A simple example is to add a certain column vector to each column in a matrix. 
+a simple example is to add a certain column vector to each column in a matrix.
 This can be accomplished with:
 
 <table class="example">

@@ -9,7 +9,7 @@
 #  EIGEN3_INCLUDE_DIR        - Directory where signature_of_eigen3_matrix_library can be found
 #  EIGEN3_INCLUDE_DIRS       - List of directories of Eigen and it's dependencies
 #  EIGEN3_ROOT_DIR           - The base directory of Eigen
-#  EIGEN3_VERSION_STRING     - A human-readable string containing the version
+#  EIGEN3_VERSION_STRING     - a human-readable string containing the version
 #  EIGEN3_VERSION_MAJOR      - The major version of Eigen
 #  EIGEN3_VERSION_MINOR      - The minor version of Eigen
 #  EIGEN3_VERSION_PATCH      - The patch version of Eigen

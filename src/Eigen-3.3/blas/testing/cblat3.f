@@ -53,7 +53,7 @@
 *> See:
 *>
 *>    Dongarra J. J., Du Croz J. J., Duff I. S. and Hammarling S.
-*>    A Set of Level 3 Basic Linear Algebra Subprograms.
+*>    a Set of Level 3 Basic Linear Algebra Subprograms.
 *>
 *>    Technical Memorandum No.88 (Revision 1), Mathematics and
 *>    Computer Science Division, Argonne National Laboratory, 9700
@@ -373,7 +373,7 @@
  9999 FORMAT( ' ROUTINES PASS COMPUTATIONAL TESTS IF TEST RATIO IS LES',
      $      'S THAN', F8.2 )
  9998 FORMAT( ' RELATIVE MACHINE PRECISION IS TAKEN TO BE', 1P, E9.1 )
- 9997 FORMAT( ' NUMBER OF VALUES OF ', A, ' IS LESS THAN 1 OR GREATER ',
+ 9997 FORMAT( ' NUMBER OF VALUES OF ', a, ' IS LESS THAN 1 OR GREATER ',
      $      'THAN ', I2 )
  9996 FORMAT( ' VALUE OF N IS LESS THAN 0 OR GREATER THAN ', I2 )
  9995 FORMAT( ' TESTS OF THE COMPLEX          LEVEL 3 BLAS', //' THE F',
@@ -404,7 +404,7 @@
       END
       SUBROUTINE CCHK1( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NALF, ALF, NBET, BET, NMAX,
-     $                  A, AA, AS, B, BB, BS, C, CC, CS, CT, G )
+     $                  a, AA, AS, B, BB, BS, C, CC, CS, CT, G )
 *
 *  Tests CGEMM.
 *
@@ -427,7 +427,7 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      COMPLEX            A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+      COMPLEX            a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
      $                   AS( NMAX*NMAX ), B( NMAX, NMAX ),
      $                   BB( NMAX*NMAX ), BET( NBET ), BS( NMAX*NMAX ),
      $                   C( NMAX, NMAX ), CC( NMAX*NMAX ),
@@ -504,9 +504,9 @@
      $               GO TO 80
                   LAA = LDA*NA
 *
-*                 Generate the matrix A.
+*                 Generate the matrix a.
 *
-                  CALL CMAKE( 'GE', ' ', ' ', MA, NA, A, NMAX, AA, LDA,
+                  CALL CMAKE( 'GE', ' ', ' ', MA, NA, a, NMAX, AA, LDA,
      $                        RESET, ZERO )
 *
                   DO 70 ICB = 1, 3
@@ -629,7 +629,7 @@
 *                             Check the result.
 *
                               CALL CMMCH( TRANSA, TRANSB, M, N, K,
-     $                                    ALPHA, A, NMAX, B, NMAX, BETA,
+     $                                    ALPHA, a, NMAX, B, NMAX, BETA,
      $                                    C, NMAX, CT, G, CC, LDC, EPS,
      $                                    ERR, FATAL, NOUT, .TRUE. )
                               ERRMAX = MAX( ERRMAX, ERR )
@@ -679,7 +679,7 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( 1X, I6, ': ', A6, '(''', A1, ''',''', A1, ''',',
-     $      3( I3, ',' ), '(', F4.1, ',', F4.1, '), A,', I3, ', B,', I3,
+     $      3( I3, ',' ), '(', F4.1, ',', F4.1, '), a,', I3, ', B,', I3,
      $      ',(', F4.1, ',', F4.1, '), C,', I3, ').' )
  9994 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
@@ -689,7 +689,7 @@
       END
       SUBROUTINE CCHK2( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NALF, ALF, NBET, BET, NMAX,
-     $                  A, AA, AS, B, BB, BS, C, CC, CS, CT, G )
+     $                  a, AA, AS, B, BB, BS, C, CC, CS, CT, G )
 *
 *  Tests CHEMM and CSYMM.
 *
@@ -712,7 +712,7 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      COMPLEX            A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+      COMPLEX            a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
      $                   AS( NMAX*NMAX ), B( NMAX, NMAX ),
      $                   BB( NMAX*NMAX ), BET( NBET ), BS( NMAX*NMAX ),
      $                   C( NMAX, NMAX ), CC( NMAX*NMAX ),
@@ -801,9 +801,9 @@
                DO 70 ICU = 1, 2
                   UPLO = ICHU( ICU: ICU )
 *
-*                 Generate the hermitian or symmetric matrix A.
+*                 Generate the hermitian or symmetric matrix a.
 *
-                  CALL CMAKE( SNAME( 2: 3 ), UPLO, ' ', NA, NA, A, NMAX,
+                  CALL CMAKE( SNAME( 2: 3 ), UPLO, ' ', NA, NA, a, NMAX,
      $                        AA, LDA, RESET, ZERO )
 *
                   DO 60 IA = 1, NALF
@@ -903,13 +903,13 @@
 *                          Check the result.
 *
                            IF( LEFT )THEN
-                              CALL CMMCH( 'N', 'N', M, N, M, ALPHA, A,
+                              CALL CMMCH( 'N', 'N', M, N, M, ALPHA, a,
      $                                    NMAX, B, NMAX, BETA, C, NMAX,
      $                                    CT, G, CC, LDC, EPS, ERR,
      $                                    FATAL, NOUT, .TRUE. )
                            ELSE
                               CALL CMMCH( 'N', 'N', M, N, N, ALPHA, B,
-     $                                    NMAX, A, NMAX, BETA, C, NMAX,
+     $                                    NMAX, a, NMAX, BETA, C, NMAX,
      $                                    CT, G, CC, LDC, EPS, ERR,
      $                                    FATAL, NOUT, .TRUE. )
                            END IF
@@ -958,7 +958,7 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( 1X, I6, ': ', A6, '(', 2( '''', A1, ''',' ), 2( I3, ',' ),
-     $      '(', F4.1, ',', F4.1, '), A,', I3, ', B,', I3, ',(', F4.1,
+     $      '(', F4.1, ',', F4.1, '), a,', I3, ', B,', I3, ',(', F4.1,
      $      ',', F4.1, '), C,', I3, ')    .' )
  9994 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
@@ -967,7 +967,7 @@
 *
       END
       SUBROUTINE CCHK3( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
-     $                  FATAL, NIDIM, IDIM, NALF, ALF, NMAX, A, AA, AS,
+     $                  FATAL, NIDIM, IDIM, NALF, ALF, NMAX, a, AA, AS,
      $                  B, BB, BS, CT, G, C )
 *
 *  Tests CTRMM and CTRSM.
@@ -991,7 +991,7 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      COMPLEX            A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+      COMPLEX            a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
      $                   AS( NMAX*NMAX ), B( NMAX, NMAX ),
      $                   BB( NMAX*NMAX ), BS( NMAX*NMAX ),
      $                   C( NMAX, NMAX ), CT( NMAX )
@@ -1081,9 +1081,9 @@
                         DO 80 IA = 1, NALF
                            ALPHA = ALF( IA )
 *
-*                          Generate the matrix A.
+*                          Generate the matrix a.
 *
-                           CALL CMAKE( 'TR', UPLO, DIAG, NA, NA, A,
+                           CALL CMAKE( 'TR', UPLO, DIAG, NA, NA, a,
      $                                 NMAX, AA, LDA, RESET, ZERO )
 *
 *                          Generate the matrix B.
@@ -1182,13 +1182,13 @@
 *
                                  IF( LEFT )THEN
                                     CALL CMMCH( TRANSA, 'N', M, N, M,
-     $                                          ALPHA, A, NMAX, B, NMAX,
+     $                                          ALPHA, a, NMAX, B, NMAX,
      $                                          ZERO, C, NMAX, CT, G,
      $                                          BB, LDB, EPS, ERR,
      $                                          FATAL, NOUT, .TRUE. )
                                  ELSE
                                     CALL CMMCH( 'N', TRANSA, M, N, N,
-     $                                          ALPHA, B, NMAX, A, NMAX,
+     $                                          ALPHA, B, NMAX, a, NMAX,
      $                                          ZERO, C, NMAX, CT, G,
      $                                          BB, LDB, EPS, ERR,
      $                                          FATAL, NOUT, .TRUE. )
@@ -1209,13 +1209,13 @@
 *
                                  IF( LEFT )THEN
                                     CALL CMMCH( TRANSA, 'N', M, N, M,
-     $                                          ONE, A, NMAX, C, NMAX,
+     $                                          ONE, a, NMAX, C, NMAX,
      $                                          ZERO, B, NMAX, CT, G,
      $                                          BB, LDB, EPS, ERR,
      $                                          FATAL, NOUT, .FALSE. )
                                  ELSE
                                     CALL CMMCH( 'N', TRANSA, M, N, N,
-     $                                          ONE, C, NMAX, A, NMAX,
+     $                                          ONE, C, NMAX, a, NMAX,
      $                                          ZERO, B, NMAX, CT, G,
      $                                          BB, LDB, EPS, ERR,
      $                                          FATAL, NOUT, .FALSE. )
@@ -1268,7 +1268,7 @@
      $      ' - SUSPECT *******' )
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( 1X, I6, ': ', A6, '(', 4( '''', A1, ''',' ), 2( I3, ',' ),
-     $      '(', F4.1, ',', F4.1, '), A,', I3, ', B,', I3, ')         ',
+     $      '(', F4.1, ',', F4.1, '), a,', I3, ', B,', I3, ')         ',
      $      '      .' )
  9994 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
@@ -1278,7 +1278,7 @@
       END
       SUBROUTINE CCHK4( SNAME, EPS, THRESH, NOUT, NTRA, TRACE, REWI,
      $                  FATAL, NIDIM, IDIM, NALF, ALF, NBET, BET, NMAX,
-     $                  A, AA, AS, B, BB, BS, C, CC, CS, CT, G )
+     $                  a, AA, AS, B, BB, BS, C, CC, CS, CT, G )
 *
 *  Tests CHERK and CSYRK.
 *
@@ -1301,7 +1301,7 @@
       LOGICAL            FATAL, REWI, TRACE
       CHARACTER*6        SNAME
 *     .. Array Arguments ..
-      COMPLEX            A( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
+      COMPLEX            a( NMAX, NMAX ), AA( NMAX*NMAX ), ALF( NALF ),
      $                   AS( NMAX*NMAX ), B( NMAX, NMAX ),
      $                   BB( NMAX*NMAX ), BET( NBET ), BS( NMAX*NMAX ),
      $                   C( NMAX, NMAX ), CC( NMAX*NMAX ),
@@ -1376,9 +1376,9 @@
      $            GO TO 80
                LAA = LDA*NA
 *
-*              Generate the matrix A.
+*              Generate the matrix a.
 *
-               CALL CMAKE( 'GE', ' ', ' ', MA, NA, A, NMAX, AA, LDA,
+               CALL CMAKE( 'GE', ' ', ' ', MA, NA, a, NMAX, AA, LDA,
      $                     RESET, ZERO )
 *
                DO 70 ICU = 1, 2
@@ -1523,15 +1523,15 @@
                               END IF
                               IF( TRAN )THEN
                                  CALL CMMCH( TRANST, 'N', LJ, 1, K,
-     $                                       ALPHA, A( 1, JJ ), NMAX,
-     $                                       A( 1, J ), NMAX, BETA,
+     $                                       ALPHA, a( 1, JJ ), NMAX,
+     $                                       a( 1, J ), NMAX, BETA,
      $                                       C( JJ, J ), NMAX, CT, G,
      $                                       CC( JC ), LDC, EPS, ERR,
      $                                       FATAL, NOUT, .TRUE. )
                               ELSE
                                  CALL CMMCH( 'N', TRANST, LJ, 1, K,
-     $                                       ALPHA, A( JJ, 1 ), NMAX,
-     $                                       A( J, 1 ), NMAX, BETA,
+     $                                       ALPHA, a( JJ, 1 ), NMAX,
+     $                                       a( J, 1 ), NMAX, BETA,
      $                                       C( JJ, J ), NMAX, CT, G,
      $                                       CC( JC ), LDC, EPS, ERR,
      $                                       FATAL, NOUT, .TRUE. )
@@ -1597,10 +1597,10 @@
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( '      THESE ARE THE RESULTS FOR COLUMN ', I3 )
  9994 FORMAT( 1X, I6, ': ', A6, '(', 2( '''', A1, ''',' ), 2( I3, ',' ),
-     $      F4.1, ', A,', I3, ',', F4.1, ', C,', I3, ')               ',
+     $      F4.1, ', a,', I3, ',', F4.1, ', C,', I3, ')               ',
      $      '          .' )
  9993 FORMAT( 1X, I6, ': ', A6, '(', 2( '''', A1, ''',' ), 2( I3, ',' ),
-     $      '(', F4.1, ',', F4.1, ') , A,', I3, ',(', F4.1, ',', F4.1,
+     $      '(', F4.1, ',', F4.1, ') , a,', I3, ',(', F4.1, ',', F4.1,
      $      '), C,', I3, ')          .' )
  9992 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
@@ -1708,7 +1708,7 @@
      $            GO TO 110
                LAA = LDA*NA
 *
-*              Generate the matrix A.
+*              Generate the matrix a.
 *
                IF( TRAN )THEN
                   CALL CMAKE( 'GE', ' ', ' ', MA, NA, AB, 2*NMAX, AA,
@@ -1970,10 +1970,10 @@
  9996 FORMAT( ' ******* ', A6, ' FAILED ON CALL NUMBER:' )
  9995 FORMAT( '      THESE ARE THE RESULTS FOR COLUMN ', I3 )
  9994 FORMAT( 1X, I6, ': ', A6, '(', 2( '''', A1, ''',' ), 2( I3, ',' ),
-     $      '(', F4.1, ',', F4.1, '), A,', I3, ', B,', I3, ',', F4.1,
+     $      '(', F4.1, ',', F4.1, '), a,', I3, ', B,', I3, ',', F4.1,
      $      ', C,', I3, ')           .' )
  9993 FORMAT( 1X, I6, ': ', A6, '(', 2( '''', A1, ''',' ), 2( I3, ',' ),
-     $      '(', F4.1, ',', F4.1, '), A,', I3, ', B,', I3, ',(', F4.1,
+     $      '(', F4.1, ',', F4.1, '), a,', I3, ', B,', I3, ',(', F4.1,
      $      ',', F4.1, '), C,', I3, ')    .' )
  9992 FORMAT( ' ******* FATAL ERROR - ERROR-EXIT TAKEN ON VALID CALL *',
      $      '******' )
@@ -1985,7 +1985,7 @@
 *
 *  Tests the error exits from the Level 3 Blas.
 *  Requires a special version of the error-handling routine XERBLA.
-*  A, B and C should not need to be defined.
+*  a, B and C should not need to be defined.
 *
 *  Auxiliary routine for test program for Level 3 Blas.
 *
@@ -2012,7 +2012,7 @@
       COMPLEX            ALPHA, BETA
       REAL               RALPHA, RBETA
 *     .. Local Arrays ..
-      COMPLEX            A( 2, 1 ), B( 2, 1 ), C( 2, 1 )
+      COMPLEX            a( 2, 1 ), B( 2, 1 ), C( 2, 1 )
 *     .. External Subroutines ..
       EXTERNAL           CGEMM, CHEMM, CHER2K, CHERK, CHKXER, CSYMM,
      $                   CSYR2K, CSYRK, CTRMM, CTRSM
@@ -2036,876 +2036,876 @@
       GO TO ( 10, 20, 30, 40, 50, 60, 70, 80,
      $        90 )ISNUM
    10 INFOT = 1
-      CALL CGEMM( '/', 'N', 0, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( '/', 'N', 0, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 1
-      CALL CGEMM( '/', 'C', 0, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( '/', 'C', 0, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 1
-      CALL CGEMM( '/', 'T', 0, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( '/', 'T', 0, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CGEMM( 'N', '/', 0, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', '/', 0, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CGEMM( 'C', '/', 0, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', '/', 0, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CGEMM( 'T', '/', 0, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', '/', 0, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'N', 'N', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'N', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'N', 'C', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'C', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'N', 'T', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'T', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'C', 'N', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'N', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'C', 'C', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'C', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'C', 'T', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'T', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'T', 'N', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'N', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'T', 'C', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'C', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CGEMM( 'T', 'T', -1, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'T', -1, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'N', 'N', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'N', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'N', 'C', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'C', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'N', 'T', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'T', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'C', 'N', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'N', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'C', 'C', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'C', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'C', 'T', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'T', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'T', 'N', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'N', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'T', 'C', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'C', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CGEMM( 'T', 'T', 0, -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'T', 0, -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'N', 'N', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'N', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'N', 'C', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'C', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'N', 'T', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'T', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'C', 'N', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'N', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'C', 'C', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'C', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'C', 'T', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'T', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'T', 'N', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'N', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'T', 'C', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'C', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CGEMM( 'T', 'T', 0, 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'T', 0, 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'N', 'N', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CGEMM( 'N', 'N', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'N', 'C', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CGEMM( 'N', 'C', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'N', 'T', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CGEMM( 'N', 'T', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'C', 'N', 0, 0, 2, ALPHA, A, 1, B, 2, BETA, C, 1 )
+      CALL CGEMM( 'C', 'N', 0, 0, 2, ALPHA, a, 1, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'C', 'C', 0, 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'C', 0, 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'C', 'T', 0, 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'T', 0, 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'T', 'N', 0, 0, 2, ALPHA, A, 1, B, 2, BETA, C, 1 )
+      CALL CGEMM( 'T', 'N', 0, 0, 2, ALPHA, a, 1, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'T', 'C', 0, 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'C', 0, 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 8
-      CALL CGEMM( 'T', 'T', 0, 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'T', 0, 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'N', 'N', 0, 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'N', 0, 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'C', 'N', 0, 0, 2, ALPHA, A, 2, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'N', 0, 0, 2, ALPHA, a, 2, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'T', 'N', 0, 0, 2, ALPHA, A, 2, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'N', 0, 0, 2, ALPHA, a, 2, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'N', 'C', 0, 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'C', 0, 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'C', 'C', 0, 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'C', 0, 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'T', 'C', 0, 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'C', 0, 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'N', 'T', 0, 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'T', 0, 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'C', 'T', 0, 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'T', 0, 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CGEMM( 'T', 'T', 0, 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'T', 0, 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'N', 'N', 2, 0, 0, ALPHA, A, 2, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'N', 2, 0, 0, ALPHA, a, 2, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'N', 'C', 2, 0, 0, ALPHA, A, 2, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'C', 2, 0, 0, ALPHA, a, 2, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'N', 'T', 2, 0, 0, ALPHA, A, 2, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'N', 'T', 2, 0, 0, ALPHA, a, 2, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'C', 'N', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'N', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'C', 'C', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'C', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'C', 'T', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'C', 'T', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'T', 'N', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'N', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'T', 'C', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'C', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 13
-      CALL CGEMM( 'T', 'T', 2, 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CGEMM( 'T', 'T', 2, 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    20 INFOT = 1
-      CALL CHEMM( '/', 'U', 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( '/', 'U', 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CHEMM( 'L', '/', 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'L', '/', 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHEMM( 'L', 'U', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'L', 'U', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHEMM( 'R', 'U', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'R', 'U', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHEMM( 'L', 'L', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'L', 'L', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHEMM( 'R', 'L', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'R', 'L', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHEMM( 'L', 'U', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'L', 'U', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHEMM( 'R', 'U', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'R', 'U', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHEMM( 'L', 'L', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'L', 'L', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHEMM( 'R', 'L', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'R', 'L', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHEMM( 'L', 'U', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 2 )
+      CALL CHEMM( 'L', 'U', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHEMM( 'R', 'U', 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'R', 'U', 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHEMM( 'L', 'L', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 2 )
+      CALL CHEMM( 'L', 'L', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHEMM( 'R', 'L', 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CHEMM( 'R', 'L', 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHEMM( 'L', 'U', 2, 0, ALPHA, A, 2, B, 1, BETA, C, 2 )
+      CALL CHEMM( 'L', 'U', 2, 0, ALPHA, a, 2, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHEMM( 'R', 'U', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CHEMM( 'R', 'U', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHEMM( 'L', 'L', 2, 0, ALPHA, A, 2, B, 1, BETA, C, 2 )
+      CALL CHEMM( 'L', 'L', 2, 0, ALPHA, a, 2, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHEMM( 'R', 'L', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CHEMM( 'R', 'L', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHEMM( 'L', 'U', 2, 0, ALPHA, A, 2, B, 2, BETA, C, 1 )
+      CALL CHEMM( 'L', 'U', 2, 0, ALPHA, a, 2, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHEMM( 'R', 'U', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 1 )
+      CALL CHEMM( 'R', 'U', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHEMM( 'L', 'L', 2, 0, ALPHA, A, 2, B, 2, BETA, C, 1 )
+      CALL CHEMM( 'L', 'L', 2, 0, ALPHA, a, 2, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHEMM( 'R', 'L', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 1 )
+      CALL CHEMM( 'R', 'L', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    30 INFOT = 1
-      CALL CSYMM( '/', 'U', 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( '/', 'U', 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CSYMM( 'L', '/', 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'L', '/', 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYMM( 'L', 'U', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'L', 'U', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYMM( 'R', 'U', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'R', 'U', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYMM( 'L', 'L', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'L', 'L', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYMM( 'R', 'L', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'R', 'L', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYMM( 'L', 'U', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'L', 'U', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYMM( 'R', 'U', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'R', 'U', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYMM( 'L', 'L', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'L', 'L', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYMM( 'R', 'L', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'R', 'L', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYMM( 'L', 'U', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 2 )
+      CALL CSYMM( 'L', 'U', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYMM( 'R', 'U', 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'R', 'U', 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYMM( 'L', 'L', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 2 )
+      CALL CSYMM( 'L', 'L', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYMM( 'R', 'L', 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYMM( 'R', 'L', 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYMM( 'L', 'U', 2, 0, ALPHA, A, 2, B, 1, BETA, C, 2 )
+      CALL CSYMM( 'L', 'U', 2, 0, ALPHA, a, 2, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYMM( 'R', 'U', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CSYMM( 'R', 'U', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYMM( 'L', 'L', 2, 0, ALPHA, A, 2, B, 1, BETA, C, 2 )
+      CALL CSYMM( 'L', 'L', 2, 0, ALPHA, a, 2, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYMM( 'R', 'L', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CSYMM( 'R', 'L', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYMM( 'L', 'U', 2, 0, ALPHA, A, 2, B, 2, BETA, C, 1 )
+      CALL CSYMM( 'L', 'U', 2, 0, ALPHA, a, 2, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYMM( 'R', 'U', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 1 )
+      CALL CSYMM( 'R', 'U', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYMM( 'L', 'L', 2, 0, ALPHA, A, 2, B, 2, BETA, C, 1 )
+      CALL CSYMM( 'L', 'L', 2, 0, ALPHA, a, 2, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYMM( 'R', 'L', 2, 0, ALPHA, A, 1, B, 2, BETA, C, 1 )
+      CALL CSYMM( 'R', 'L', 2, 0, ALPHA, a, 1, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    40 INFOT = 1
-      CALL CTRMM( '/', 'U', 'N', 'N', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( '/', 'U', 'N', 'N', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CTRMM( 'L', '/', 'N', 'N', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', '/', 'N', 'N', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CTRMM( 'L', 'U', '/', 'N', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', '/', 'N', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CTRMM( 'L', 'U', 'N', '/', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', 'N', '/', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'L', 'U', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'L', 'U', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'L', 'U', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'R', 'U', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'R', 'U', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'R', 'U', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'L', 'L', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'L', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'L', 'L', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'L', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'L', 'L', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'L', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'R', 'L', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'R', 'L', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRMM( 'R', 'L', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'L', 'U', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'L', 'U', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'L', 'U', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'U', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'R', 'U', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'R', 'U', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'R', 'U', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'L', 'L', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'L', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'L', 'L', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'L', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'L', 'L', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'L', 'L', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'R', 'L', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'R', 'L', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRMM( 'R', 'L', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRMM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRMM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRMM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'R', 'U', 'N', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'N', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'R', 'U', 'C', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'C', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'R', 'U', 'T', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'T', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRMM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRMM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRMM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'R', 'L', 'N', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'N', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'R', 'L', 'C', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'C', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRMM( 'R', 'L', 'T', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'T', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRMM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRMM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRMM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'R', 'U', 'N', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'N', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'R', 'U', 'C', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'C', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'R', 'U', 'T', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'U', 'T', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRMM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRMM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRMM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'R', 'L', 'N', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'N', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'R', 'L', 'C', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'C', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRMM( 'R', 'L', 'T', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRMM( 'R', 'L', 'T', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    50 INFOT = 1
-      CALL CTRSM( '/', 'U', 'N', 'N', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( '/', 'U', 'N', 'N', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CTRSM( 'L', '/', 'N', 'N', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', '/', 'N', 'N', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CTRSM( 'L', 'U', '/', 'N', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', '/', 'N', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CTRSM( 'L', 'U', 'N', '/', 0, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', 'N', '/', 0, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'L', 'U', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'L', 'U', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'L', 'U', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'R', 'U', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'R', 'U', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'R', 'U', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'L', 'L', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'L', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'L', 'L', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'L', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'L', 'L', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'L', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'R', 'L', 'N', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'N', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'R', 'L', 'C', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'C', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 5
-      CALL CTRSM( 'R', 'L', 'T', 'N', -1, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'T', 'N', -1, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'L', 'U', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'L', 'U', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'L', 'U', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'U', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'R', 'U', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'R', 'U', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'R', 'U', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'L', 'L', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'L', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'L', 'L', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'L', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'L', 'L', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'L', 'L', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'R', 'L', 'N', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'N', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'R', 'L', 'C', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'C', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 6
-      CALL CTRSM( 'R', 'L', 'T', 'N', 0, -1, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'T', 'N', 0, -1, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRSM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRSM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRSM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'R', 'U', 'N', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'N', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'R', 'U', 'C', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'C', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'R', 'U', 'T', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'T', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRSM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRSM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, A, 1, B, 2 )
+      CALL CTRSM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, a, 1, B, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'R', 'L', 'N', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'N', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'R', 'L', 'C', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'C', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CTRSM( 'R', 'L', 'T', 'N', 0, 2, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'T', 'N', 0, 2, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRSM( 'L', 'U', 'N', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRSM( 'L', 'U', 'C', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRSM( 'L', 'U', 'T', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'R', 'U', 'N', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'N', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'R', 'U', 'C', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'C', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'R', 'U', 'T', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'U', 'T', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRSM( 'L', 'L', 'N', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRSM( 'L', 'L', 'C', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, A, 2, B, 1 )
+      CALL CTRSM( 'L', 'L', 'T', 'N', 2, 0, ALPHA, a, 2, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'R', 'L', 'N', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'N', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'R', 'L', 'C', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'C', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 11
-      CALL CTRSM( 'R', 'L', 'T', 'N', 2, 0, ALPHA, A, 1, B, 1 )
+      CALL CTRSM( 'R', 'L', 'T', 'N', 2, 0, ALPHA, a, 1, B, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    60 INFOT = 1
-      CALL CHERK( '/', 'N', 0, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( '/', 'N', 0, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CHERK( 'U', 'T', 0, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'U', 'T', 0, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHERK( 'U', 'N', -1, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'U', 'N', -1, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHERK( 'U', 'C', -1, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'U', 'C', -1, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHERK( 'L', 'N', -1, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'L', 'N', -1, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHERK( 'L', 'C', -1, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'L', 'C', -1, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHERK( 'U', 'N', 0, -1, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'U', 'N', 0, -1, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHERK( 'U', 'C', 0, -1, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'U', 'C', 0, -1, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHERK( 'L', 'N', 0, -1, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'L', 'N', 0, -1, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHERK( 'L', 'C', 0, -1, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'L', 'C', 0, -1, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHERK( 'U', 'N', 2, 0, RALPHA, A, 1, RBETA, C, 2 )
+      CALL CHERK( 'U', 'N', 2, 0, RALPHA, a, 1, RBETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHERK( 'U', 'C', 0, 2, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'U', 'C', 0, 2, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHERK( 'L', 'N', 2, 0, RALPHA, A, 1, RBETA, C, 2 )
+      CALL CHERK( 'L', 'N', 2, 0, RALPHA, a, 1, RBETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHERK( 'L', 'C', 0, 2, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'L', 'C', 0, 2, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CHERK( 'U', 'N', 2, 0, RALPHA, A, 2, RBETA, C, 1 )
+      CALL CHERK( 'U', 'N', 2, 0, RALPHA, a, 2, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CHERK( 'U', 'C', 2, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'U', 'C', 2, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CHERK( 'L', 'N', 2, 0, RALPHA, A, 2, RBETA, C, 1 )
+      CALL CHERK( 'L', 'N', 2, 0, RALPHA, a, 2, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CHERK( 'L', 'C', 2, 0, RALPHA, A, 1, RBETA, C, 1 )
+      CALL CHERK( 'L', 'C', 2, 0, RALPHA, a, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    70 INFOT = 1
-      CALL CSYRK( '/', 'N', 0, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( '/', 'N', 0, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CSYRK( 'U', 'C', 0, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'U', 'C', 0, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYRK( 'U', 'N', -1, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'U', 'N', -1, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYRK( 'U', 'T', -1, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'U', 'T', -1, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYRK( 'L', 'N', -1, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'L', 'N', -1, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYRK( 'L', 'T', -1, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'L', 'T', -1, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYRK( 'U', 'N', 0, -1, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'U', 'N', 0, -1, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYRK( 'U', 'T', 0, -1, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'U', 'T', 0, -1, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYRK( 'L', 'N', 0, -1, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'L', 'N', 0, -1, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYRK( 'L', 'T', 0, -1, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'L', 'T', 0, -1, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYRK( 'U', 'N', 2, 0, ALPHA, A, 1, BETA, C, 2 )
+      CALL CSYRK( 'U', 'N', 2, 0, ALPHA, a, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYRK( 'U', 'T', 0, 2, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'U', 'T', 0, 2, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYRK( 'L', 'N', 2, 0, ALPHA, A, 1, BETA, C, 2 )
+      CALL CSYRK( 'L', 'N', 2, 0, ALPHA, a, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYRK( 'L', 'T', 0, 2, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'L', 'T', 0, 2, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CSYRK( 'U', 'N', 2, 0, ALPHA, A, 2, BETA, C, 1 )
+      CALL CSYRK( 'U', 'N', 2, 0, ALPHA, a, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CSYRK( 'U', 'T', 2, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'U', 'T', 2, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CSYRK( 'L', 'N', 2, 0, ALPHA, A, 2, BETA, C, 1 )
+      CALL CSYRK( 'L', 'N', 2, 0, ALPHA, a, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 10
-      CALL CSYRK( 'L', 'T', 2, 0, ALPHA, A, 1, BETA, C, 1 )
+      CALL CSYRK( 'L', 'T', 2, 0, ALPHA, a, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    80 INFOT = 1
-      CALL CHER2K( '/', 'N', 0, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( '/', 'N', 0, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CHER2K( 'U', 'T', 0, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'T', 0, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHER2K( 'U', 'N', -1, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'N', -1, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHER2K( 'U', 'C', -1, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'C', -1, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHER2K( 'L', 'N', -1, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'N', -1, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CHER2K( 'L', 'C', -1, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'C', -1, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHER2K( 'U', 'N', 0, -1, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'N', 0, -1, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHER2K( 'U', 'C', 0, -1, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'C', 0, -1, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHER2K( 'L', 'N', 0, -1, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'N', 0, -1, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CHER2K( 'L', 'C', 0, -1, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'C', 0, -1, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHER2K( 'U', 'N', 2, 0, ALPHA, A, 1, B, 1, RBETA, C, 2 )
+      CALL CHER2K( 'U', 'N', 2, 0, ALPHA, a, 1, B, 1, RBETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHER2K( 'U', 'C', 0, 2, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'C', 0, 2, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHER2K( 'L', 'N', 2, 0, ALPHA, A, 1, B, 1, RBETA, C, 2 )
+      CALL CHER2K( 'L', 'N', 2, 0, ALPHA, a, 1, B, 1, RBETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CHER2K( 'L', 'C', 0, 2, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'C', 0, 2, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHER2K( 'U', 'N', 2, 0, ALPHA, A, 2, B, 1, RBETA, C, 2 )
+      CALL CHER2K( 'U', 'N', 2, 0, ALPHA, a, 2, B, 1, RBETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHER2K( 'U', 'C', 0, 2, ALPHA, A, 2, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'C', 0, 2, ALPHA, a, 2, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHER2K( 'L', 'N', 2, 0, ALPHA, A, 2, B, 1, RBETA, C, 2 )
+      CALL CHER2K( 'L', 'N', 2, 0, ALPHA, a, 2, B, 1, RBETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CHER2K( 'L', 'C', 0, 2, ALPHA, A, 2, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'C', 0, 2, ALPHA, a, 2, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHER2K( 'U', 'N', 2, 0, ALPHA, A, 2, B, 2, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'N', 2, 0, ALPHA, a, 2, B, 2, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHER2K( 'U', 'C', 2, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'U', 'C', 2, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHER2K( 'L', 'N', 2, 0, ALPHA, A, 2, B, 2, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'N', 2, 0, ALPHA, a, 2, B, 2, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CHER2K( 'L', 'C', 2, 0, ALPHA, A, 1, B, 1, RBETA, C, 1 )
+      CALL CHER2K( 'L', 'C', 2, 0, ALPHA, a, 1, B, 1, RBETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       GO TO 100
    90 INFOT = 1
-      CALL CSYR2K( '/', 'N', 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( '/', 'N', 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 2
-      CALL CSYR2K( 'U', 'C', 0, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'C', 0, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYR2K( 'U', 'N', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'N', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYR2K( 'U', 'T', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'T', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYR2K( 'L', 'N', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'N', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 3
-      CALL CSYR2K( 'L', 'T', -1, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'T', -1, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYR2K( 'U', 'N', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'N', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYR2K( 'U', 'T', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'T', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYR2K( 'L', 'N', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'N', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 4
-      CALL CSYR2K( 'L', 'T', 0, -1, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'T', 0, -1, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYR2K( 'U', 'N', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CSYR2K( 'U', 'N', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYR2K( 'U', 'T', 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'T', 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYR2K( 'L', 'N', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 2 )
+      CALL CSYR2K( 'L', 'N', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 7
-      CALL CSYR2K( 'L', 'T', 0, 2, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'T', 0, 2, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYR2K( 'U', 'N', 2, 0, ALPHA, A, 2, B, 1, BETA, C, 2 )
+      CALL CSYR2K( 'U', 'N', 2, 0, ALPHA, a, 2, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYR2K( 'U', 'T', 0, 2, ALPHA, A, 2, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'T', 0, 2, ALPHA, a, 2, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYR2K( 'L', 'N', 2, 0, ALPHA, A, 2, B, 1, BETA, C, 2 )
+      CALL CSYR2K( 'L', 'N', 2, 0, ALPHA, a, 2, B, 1, BETA, C, 2 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 9
-      CALL CSYR2K( 'L', 'T', 0, 2, ALPHA, A, 2, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'T', 0, 2, ALPHA, a, 2, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYR2K( 'U', 'N', 2, 0, ALPHA, A, 2, B, 2, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'N', 2, 0, ALPHA, a, 2, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYR2K( 'U', 'T', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'U', 'T', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYR2K( 'L', 'N', 2, 0, ALPHA, A, 2, B, 2, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'N', 2, 0, ALPHA, a, 2, B, 2, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
       INFOT = 12
-      CALL CSYR2K( 'L', 'T', 2, 0, ALPHA, A, 1, B, 1, BETA, C, 1 )
+      CALL CSYR2K( 'L', 'T', 2, 0, ALPHA, a, 1, B, 1, BETA, C, 1 )
       CALL CHKXER( SRNAMT, INFOT, NOUT, LERR, OK )
 *
   100 IF( OK )THEN
@@ -2922,10 +2922,10 @@
 *     End of CCHKE.
 *
       END
-      SUBROUTINE CMAKE( TYPE, UPLO, DIAG, M, N, A, NMAX, AA, LDA, RESET,
+      SUBROUTINE CMAKE( TYPE, UPLO, DIAG, M, N, a, NMAX, AA, LDA, RESET,
      $                  TRANSL )
 *
-*  Generates values for an M by N matrix A.
+*  Generates values for an M by N matrix a.
 *  Stores the values in the array AA in the data structure required
 *  by the routine, with unwanted elements set to rogue value.
 *
@@ -2955,7 +2955,7 @@
       CHARACTER*1        DIAG, UPLO
       CHARACTER*2        TYPE
 *     .. Array Arguments ..
-      COMPLEX            A( NMAX, * ), AA( * )
+      COMPLEX            a( NMAX, * ), AA( * )
 *     .. Local Scalars ..
       INTEGER            I, IBEG, IEND, J, JJ
       LOGICAL            GEN, HER, LOWER, SYM, TRI, UNIT, UPPER
@@ -2973,33 +2973,33 @@
       LOWER = ( HER.OR.SYM.OR.TRI ).AND.UPLO.EQ.'L'
       UNIT = TRI.AND.DIAG.EQ.'U'
 *
-*     Generate data in array A.
+*     Generate data in array a.
 *
       DO 20 J = 1, N
          DO 10 I = 1, M
             IF( GEN.OR.( UPPER.AND.I.LE.J ).OR.( LOWER.AND.I.GE.J ) )
      $          THEN
-               A( I, J ) = CBEG( RESET ) + TRANSL
+               a( I, J ) = CBEG( RESET ) + TRANSL
                IF( I.NE.J )THEN
 *                 Set some elements to zero
                   IF( N.GT.3.AND.J.EQ.N/2 )
-     $               A( I, J ) = ZERO
+     $               a( I, J ) = ZERO
                   IF( HER )THEN
-                     A( J, I ) = CONJG( A( I, J ) )
+                     a( J, I ) = CONJG( a( I, J ) )
                   ELSE IF( SYM )THEN
-                     A( J, I ) = A( I, J )
+                     a( J, I ) = a( I, J )
                   ELSE IF( TRI )THEN
-                     A( J, I ) = ZERO
+                     a( J, I ) = ZERO
                   END IF
                END IF
             END IF
    10    CONTINUE
          IF( HER )
-     $      A( J, J ) = CMPLX( REAL( A( J, J ) ), RZERO )
+     $      a( J, J ) = CMPLX( REAL( a( J, J ) ), RZERO )
          IF( TRI )
-     $      A( J, J ) = A( J, J ) + ONE
+     $      a( J, J ) = a( J, J ) + ONE
          IF( UNIT )
-     $      A( J, J ) = ONE
+     $      a( J, J ) = ONE
    20 CONTINUE
 *
 *     Store elements in array AS in data structure required by routine.
@@ -3007,7 +3007,7 @@
       IF( TYPE.EQ.'GE' )THEN
          DO 50 J = 1, N
             DO 30 I = 1, M
-               AA( I + ( J - 1 )*LDA ) = A( I, J )
+               AA( I + ( J - 1 )*LDA ) = a( I, J )
    30       CONTINUE
             DO 40 I = M + 1, LDA
                AA( I + ( J - 1 )*LDA ) = ROGUE
@@ -3034,7 +3034,7 @@
                AA( I + ( J - 1 )*LDA ) = ROGUE
    60       CONTINUE
             DO 70 I = IBEG, IEND
-               AA( I + ( J - 1 )*LDA ) = A( I, J )
+               AA( I + ( J - 1 )*LDA ) = a( I, J )
    70       CONTINUE
             DO 80 I = IEND + 1, LDA
                AA( I + ( J - 1 )*LDA ) = ROGUE
@@ -3050,7 +3050,7 @@
 *     End of CMAKE.
 *
       END
-      SUBROUTINE CMMCH( TRANSA, TRANSB, M, N, KK, ALPHA, A, LDA, B, LDB,
+      SUBROUTINE CMMCH( TRANSA, TRANSB, M, N, KK, ALPHA, a, LDA, B, LDB,
      $                  BETA, C, LDC, CT, G, CC, LDCC, EPS, ERR, FATAL,
      $                  NOUT, MV )
 *
@@ -3076,7 +3076,7 @@
       LOGICAL            FATAL, MV
       CHARACTER*1        TRANSA, TRANSB
 *     .. Array Arguments ..
-      COMPLEX            A( LDA, * ), B( LDB, * ), C( LDC, * ),
+      COMPLEX            a( LDA, * ), B( LDB, * ), C( LDC, * ),
      $                   CC( LDCC, * ), CT( * )
       REAL               G( * )
 *     .. Local Scalars ..
@@ -3097,7 +3097,7 @@
       CTRANB = TRANSB.EQ.'C'
 *
 *     Compute expected result, one column at a time, in CT using data
-*     in A, B and C.
+*     in a, B and C.
 *     Compute gauges in G.
 *
       DO 220 J = 1, N
@@ -3109,24 +3109,24 @@
          IF( .NOT.TRANA.AND..NOT.TRANB )THEN
             DO 30 K = 1, KK
                DO 20 I = 1, M
-                  CT( I ) = CT( I ) + A( I, K )*B( K, J )
-                  G( I ) = G( I ) + ABS1( A( I, K ) )*ABS1( B( K, J ) )
+                  CT( I ) = CT( I ) + a( I, K )*B( K, J )
+                  G( I ) = G( I ) + ABS1( a( I, K ) )*ABS1( B( K, J ) )
    20          CONTINUE
    30       CONTINUE
          ELSE IF( TRANA.AND..NOT.TRANB )THEN
             IF( CTRANA )THEN
                DO 50 K = 1, KK
                   DO 40 I = 1, M
-                     CT( I ) = CT( I ) + CONJG( A( K, I ) )*B( K, J )
-                     G( I ) = G( I ) + ABS1( A( K, I ) )*
+                     CT( I ) = CT( I ) + CONJG( a( K, I ) )*B( K, J )
+                     G( I ) = G( I ) + ABS1( a( K, I ) )*
      $                        ABS1( B( K, J ) )
    40             CONTINUE
    50          CONTINUE
             ELSE
                DO 70 K = 1, KK
                   DO 60 I = 1, M
-                     CT( I ) = CT( I ) + A( K, I )*B( K, J )
-                     G( I ) = G( I ) + ABS1( A( K, I ) )*
+                     CT( I ) = CT( I ) + a( K, I )*B( K, J )
+                     G( I ) = G( I ) + ABS1( a( K, I ) )*
      $                        ABS1( B( K, J ) )
    60             CONTINUE
    70          CONTINUE
@@ -3135,16 +3135,16 @@
             IF( CTRANB )THEN
                DO 90 K = 1, KK
                   DO 80 I = 1, M
-                     CT( I ) = CT( I ) + A( I, K )*CONJG( B( J, K ) )
-                     G( I ) = G( I ) + ABS1( A( I, K ) )*
+                     CT( I ) = CT( I ) + a( I, K )*CONJG( B( J, K ) )
+                     G( I ) = G( I ) + ABS1( a( I, K ) )*
      $                        ABS1( B( J, K ) )
    80             CONTINUE
    90          CONTINUE
             ELSE
                DO 110 K = 1, KK
                   DO 100 I = 1, M
-                     CT( I ) = CT( I ) + A( I, K )*B( J, K )
-                     G( I ) = G( I ) + ABS1( A( I, K ) )*
+                     CT( I ) = CT( I ) + a( I, K )*B( J, K )
+                     G( I ) = G( I ) + ABS1( a( I, K ) )*
      $                        ABS1( B( J, K ) )
   100             CONTINUE
   110          CONTINUE
@@ -3154,17 +3154,17 @@
                IF( CTRANB )THEN
                   DO 130 K = 1, KK
                      DO 120 I = 1, M
-                        CT( I ) = CT( I ) + CONJG( A( K, I ) )*
+                        CT( I ) = CT( I ) + CONJG( a( K, I ) )*
      $                            CONJG( B( J, K ) )
-                        G( I ) = G( I ) + ABS1( A( K, I ) )*
+                        G( I ) = G( I ) + ABS1( a( K, I ) )*
      $                           ABS1( B( J, K ) )
   120                CONTINUE
   130             CONTINUE
                ELSE
                   DO 150 K = 1, KK
                      DO 140 I = 1, M
-                        CT( I ) = CT( I ) + CONJG( A( K, I ) )*B( J, K )
-                        G( I ) = G( I ) + ABS1( A( K, I ) )*
+                        CT( I ) = CT( I ) + CONJG( a( K, I ) )*B( J, K )
+                        G( I ) = G( I ) + ABS1( a( K, I ) )*
      $                           ABS1( B( J, K ) )
   140                CONTINUE
   150             CONTINUE
@@ -3173,16 +3173,16 @@
                IF( CTRANB )THEN
                   DO 170 K = 1, KK
                      DO 160 I = 1, M
-                        CT( I ) = CT( I ) + A( K, I )*CONJG( B( J, K ) )
-                        G( I ) = G( I ) + ABS1( A( K, I ) )*
+                        CT( I ) = CT( I ) + a( K, I )*CONJG( B( J, K ) )
+                        G( I ) = G( I ) + ABS1( a( K, I ) )*
      $                           ABS1( B( J, K ) )
   160                CONTINUE
   170             CONTINUE
                ELSE
                   DO 190 K = 1, KK
                      DO 180 I = 1, M
-                        CT( I ) = CT( I ) + A( K, I )*B( J, K )
-                        G( I ) = G( I ) + ABS1( A( K, I ) )*
+                        CT( I ) = CT( I ) + a( K, I )*B( J, K )
+                        G( I ) = G( I ) + ABS1( a( K, I ) )*
      $                           ABS1( B( J, K ) )
   180                CONTINUE
   190             CONTINUE
@@ -3385,7 +3385,7 @@
 *     End of CBEG.
 *
       END
-      REAL FUNCTION SDIFF( X, Y )
+      REAL FUNCTION SDIFF( x, y )
 *
 *  Auxiliary routine for test program for Level 3 Blas.
 *
@@ -3396,9 +3396,9 @@
 *     Sven Hammarling, Numerical Algorithms Group Ltd.
 *
 *     .. Scalar Arguments ..
-      REAL               X, Y
+      REAL               x, y
 *     .. Executable Statements ..
-      SDIFF = X - Y
+      SDIFF = x - y
       RETURN
 *
 *     End of SDIFF.

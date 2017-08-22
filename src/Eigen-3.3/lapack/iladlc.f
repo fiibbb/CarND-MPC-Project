@@ -18,13 +18,13 @@
 *  Definition:
 *  ===========
 *
-*       INTEGER FUNCTION ILADLC( M, N, A, LDA )
+*       INTEGER FUNCTION ILADLC( M, N, a, LDA )
 * 
 *       .. Scalar Arguments ..
 *       INTEGER            M, N, LDA
 *       ..
 *       .. Array Arguments ..
-*       DOUBLE PRECISION   A( LDA, * )
+*       DOUBLE PRECISION   a( LDA, * )
 *       ..
 *  
 *
@@ -33,7 +33,7 @@
 *>
 *> \verbatim
 *>
-*> ILADLC scans A for its last non-zero column.
+*> ILADLC scans a for its last non-zero column.
 *> \endverbatim
 *
 *  Arguments:
@@ -42,25 +42,25 @@
 *> \param[in] M
 *> \verbatim
 *>          M is INTEGER
-*>          The number of rows of the matrix A.
+*>          The number of rows of the matrix a.
 *> \endverbatim
 *>
 *> \param[in] N
 *> \verbatim
 *>          N is INTEGER
-*>          The number of columns of the matrix A.
+*>          The number of columns of the matrix a.
 *> \endverbatim
 *>
-*> \param[in] A
+*> \param[in] a
 *> \verbatim
-*>          A is DOUBLE PRECISION array, dimension (LDA,N)
-*>          The m by n matrix A.
+*>          a is DOUBLE PRECISION array, dimension (LDA,N)
+*>          The m by n matrix a.
 *> \endverbatim
 *>
 *> \param[in] LDA
 *> \verbatim
 *>          LDA is INTEGER
-*>          The leading dimension of the array A. LDA >= max(1,M).
+*>          The leading dimension of the array a. LDA >= max(1,M).
 *> \endverbatim
 *
 *  Authors:
@@ -76,7 +76,7 @@
 *> \ingroup auxOTHERauxiliary
 *
 *  =====================================================================
-      INTEGER FUNCTION ILADLC( M, N, A, LDA )
+      INTEGER FUNCTION ILADLC( M, N, a, LDA )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -87,7 +87,7 @@
       INTEGER            M, N, LDA
 *     ..
 *     .. Array Arguments ..
-      DOUBLE PRECISION   A( LDA, * )
+      DOUBLE PRECISION   a( LDA, * )
 *     ..
 *
 *  =====================================================================
@@ -104,13 +104,13 @@
 *     Quick test for the common case where one corner is non-zero.
       IF( N.EQ.0 ) THEN
          ILADLC = N
-      ELSE IF( A(1, N).NE.ZERO .OR. A(M, N).NE.ZERO ) THEN
+      ELSE IF( a(1, N).NE.ZERO .OR. a(M, N).NE.ZERO ) THEN
          ILADLC = N
       ELSE
 *     Now scan each column from the end, returning with the first non-zero.
          DO ILADLC = N, 1, -1
             DO I = 1, M
-               IF( A(I, ILADLC).NE.ZERO ) RETURN
+               IF( a(I, ILADLC).NE.ZERO ) RETURN
             END DO
          END DO
       END IF

@@ -24,7 +24,7 @@ The problem is that, in some particular cases, this assumption can be wrong on W
 
 \section sec_sol1 Local solution
 
-A local solution is to mark such a function with this attribute:
+a local solution is to mark such a function with this attribute:
 \code
 __attribute__((force_align_arg_pointer)) void foo()
 {
@@ -37,7 +37,7 @@ Read <a href="http://gcc.gnu.org/onlinedocs/gcc-4.4.0/gcc/Function-Attributes.ht
 
 \section sec_sol2 Global solutions
 
-A global solution is to edit your project so that when compiling with GCC on Windows, you pass this option to GCC:
+a global solution is to edit your project so that when compiling with GCC on Windows, you pass this option to GCC:
 \code
 -mincoming-stack-boundary=2
 \endcode

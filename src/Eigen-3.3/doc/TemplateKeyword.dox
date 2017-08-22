@@ -33,7 +33,7 @@ same meaning in this context.
 
 Let us illustrate the second use of the \c template keyword with an example. Suppose we want to write a
 function which copies all entries in the upper triangular part of a matrix into another matrix, while keeping
-the lower triangular part unchanged. A straightforward implementation would be as follows:
+the lower triangular part unchanged. a straightforward implementation would be as follows:
 
 <table class="example">
 <tr><th>Example:</th><th>Output:</th></tr>
@@ -82,7 +82,7 @@ the programmer should specify this explicitly with the \c template keyword and w
 triangularView</tt>.
 
 The precise rules are rather complicated, but ignoring some subtleties we can summarize them as follows:
-- A <em>dependent name</em> is name that depends (directly or indirectly) on a template parameter. In the
+- a <em>dependent name</em> is name that depends (directly or indirectly) on a template parameter. In the
   example, \c dst is a dependent name because it is of type <tt>MatrixBase&lt;Derived1&gt;</tt> which depends
   on the template parameter \c Derived1.
 - If the code contains either one of the constructs <tt>xxx.yyy</tt> or <tt>xxx-&gt;yyy</tt> and \c xxx is a

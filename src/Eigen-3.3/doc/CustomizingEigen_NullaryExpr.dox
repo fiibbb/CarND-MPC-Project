@@ -18,7 +18,7 @@ For example, here is a 4-by-4 circulant matrix:
     4 & 2 & 1 & 8 \\
     8 & 4 & 2 & 1
 \end{bmatrix} \f]
-A circulant matrix is uniquely determined by its first column. We wish
+a circulant matrix is uniquely determined by its first column. We wish
 to write a function \c makeCirculant which, given the first column,
 returns an expression representing the circulant matrix.
 
@@ -64,7 +64,7 @@ To this end, let us first write a nullary-functor storing references to the inpu
 
 \snippet nullary_indexing.cpp functor
 
-Then, let's create an \c indexing(A,rows,cols) function creating the nullary expression:
+Then, let's create an \c indexing(a,rows,cols) function creating the nullary expression:
 
 \snippet nullary_indexing.cpp function
 

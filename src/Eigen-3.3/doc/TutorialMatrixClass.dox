@@ -73,7 +73,7 @@ Matrix<float, 3, Dynamic>
 
 \section TutorialMatrixConstructors Constructors
 
-A default constructor is always available, never performs any dynamic memory allocation, and never initializes the matrix coefficients. You can do:
+a default constructor is always available, never performs any dynamic memory allocation, and never initializes the matrix coefficients. You can do:
 \code
 Matrix3f a;
 MatrixXf b;
@@ -253,7 +253,7 @@ Eigen defines the following Matrix typedefs:
 \li RowVectorNt for Matrix<type, 1, N>. For example, RowVector3d for Matrix<double, 1, 3>.
 
 Where:
-\li N can be any one of \c 2, \c 3, \c 4, or \c X (meaning \c Dynamic).
+\li N can be any one of \c 2, \c 3, \c 4, or \c x (meaning \c Dynamic).
 \li t can be any one of \c i (meaning int), \c f (meaning float), \c d (meaning double),
       \c cf (meaning complex<float>), or \c cd (meaning complex<double>). The fact that typedefs are only
     defined for these five types doesn't mean that they are the only supported scalar types. For example,

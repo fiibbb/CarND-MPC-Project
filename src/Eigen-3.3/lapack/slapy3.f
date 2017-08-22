@@ -18,10 +18,10 @@
 *  Definition:
 *  ===========
 *
-*       REAL             FUNCTION SLAPY3( X, Y, Z )
+*       REAL             FUNCTION SLAPY3( x, y, Z )
 * 
 *       .. Scalar Arguments ..
-*       REAL               X, Y, Z
+*       REAL               x, y, Z
 *       ..
 *  
 *
@@ -37,20 +37,20 @@
 *  Arguments:
 *  ==========
 *
-*> \param[in] X
+*> \param[in] x
 *> \verbatim
-*>          X is REAL
+*>          x is REAL
 *> \endverbatim
 *>
-*> \param[in] Y
+*> \param[in] y
 *> \verbatim
-*>          Y is REAL
+*>          y is REAL
 *> \endverbatim
 *>
 *> \param[in] Z
 *> \verbatim
 *>          Z is REAL
-*>          X, Y and Z specify the values x, y and z.
+*>          x, y and Z specify the values x, y and z.
 *> \endverbatim
 *
 *  Authors:
@@ -66,7 +66,7 @@
 *> \ingroup auxOTHERauxiliary
 *
 *  =====================================================================
-      REAL             FUNCTION SLAPY3( X, Y, Z )
+      REAL             FUNCTION SLAPY3( x, y, Z )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -74,7 +74,7 @@
 *     November 2011
 *
 *     .. Scalar Arguments ..
-      REAL               X, Y, Z
+      REAL               x, y, Z
 *     ..
 *
 *  =====================================================================
@@ -91,8 +91,8 @@
 *     ..
 *     .. Executable Statements ..
 *
-      XABS = ABS( X )
-      YABS = ABS( Y )
+      XABS = ABS( x )
+      YABS = ABS( y )
       ZABS = ABS( Z )
       W = MAX( XABS, YABS, ZABS )
       IF( W.EQ.ZERO ) THEN

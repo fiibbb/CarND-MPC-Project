@@ -25,8 +25,8 @@ you to write faster code by making your expressions more Eigen friendly.
 Let's start with the most common primitive: the matrix product of general dense matrices.
 In the BLAS world this corresponds to the GEMM routine. Our equivalent primitive can
 perform the following operation:
-\f$ C.noalias() += \alpha op1(A) op2(B) \f$
-where A, B, and C are column and/or row major matrices (or sub-matrices),
+\f$ C.noalias() += \alpha op1(a) op2(B) \f$
+where a, B, and C are column and/or row major matrices (or sub-matrices),
 alpha is a scalar value, and op1, op2 can be transpose, adjoint, conjugate, or the identity.
 When Eigen detects a matrix product, it analyzes both sides of the product to extract a
 unique scalar factor alpha, and for each side, its effective storage order, shape, and conjugation states.

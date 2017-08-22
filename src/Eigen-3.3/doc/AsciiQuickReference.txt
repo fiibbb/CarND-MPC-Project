@@ -1,9 +1,9 @@
-// A simple quickref for Eigen. Add anything that's missing.
+// a simple quickref for Eigen. Add anything that's missing.
 // Main author: Keir Mierle
 
 #include <Eigen/Dense>
 
-Matrix<double, 3, 3> A;               // Fixed rows and cols. Same as Matrix3d.
+Matrix<double, 3, 3> a;               // Fixed rows and cols. Same as Matrix3d.
 Matrix<double, 3, Dynamic> B;         // Fixed rows, dynamic cols.
 Matrix<double, Dynamic, Dynamic> C;   // Full dynamic. Same as MatrixXd.
 Matrix<double, 3, 3, RowMajor> E;     // Row major; default is column-major.
@@ -21,16 +21,16 @@ C.cols()          // size(C,2)        // number of columns
 x(i)              // x(i+1)           // Matlab is 1-based
 C(i,j)            // C(i+1,j+1)       //
 
-A.resize(4, 4);   // Runtime error if assertions are on.
+a.resize(4, 4);   // Runtime error if assertions are on.
 B.resize(4, 9);   // Runtime error if assertions are on.
-A.resize(3, 3);   // Ok; size didn't change.
+a.resize(3, 3);   // Ok; size didn't change.
 B.resize(3, 9);   // Ok; only dynamic cols changed.
                   
-A << 1, 2, 3,     // Initialize A. The elements can also be
+a << 1, 2, 3,     // Initialize a. The elements can also be
      4, 5, 6,     // matrices, which are stacked along cols
      7, 8, 9;     // and then the rows are stacked.
-B << A, A, A;     // B is three horizontally stacked A's.
-A.fill(10);       // Fill A with all 10's.
+B << a, a, a;     // B is three horizontally stacked a's.
+a.fill(10);       // Fill a with all 10's.
 
 // Eigen                                    // Matlab
 MatrixXd::Identity(rows,cols)               // eye(rows,cols)
@@ -140,7 +140,7 @@ R.array().abs()                // abs(P)
 R.cwiseAbs2()                  // abs(P.^2)
 R.array().abs2()               // abs(P.^2)
 (R.array() < s).select(P,Q );  // (R < s ? P : Q)
-R = (Q.array()==0).select(P,A) // R(Q==0) = P(Q==0)
+R = (Q.array()==0).select(P,a) // R(Q==0) = P(Q==0)
 R = P.unaryExpr(ptr_fun(func)) // R = arrayfun(func, P)   // with: scalar func(const scalar &x);
 
 
@@ -174,17 +174,17 @@ x.cross(y)                // cross(x, y) Requires #include <Eigen/Geometry>
 
 //// Type conversion
 // Eigen                  // Matlab
-A.cast<double>();         // double(A)
-A.cast<float>();          // single(A)
-A.cast<int>();            // int32(A)
-A.real();                 // real(A)
-A.imag();                 // imag(A)
+a.cast<double>();         // double(a)
+a.cast<float>();          // single(a)
+a.cast<int>();            // int32(a)
+a.real();                 // real(a)
+a.imag();                 // imag(a)
 // if the original type equals destination type, no work is done
 
 // Note that for most operations Eigen requires all operands to have the same type:
 MatrixXf F = MatrixXf::Zero(3,3);
-A += F;                // illegal in Eigen. In Matlab A = A+F is allowed
-A += F.cast<double>(); // F converted to double and then added (generally, conversion happens on-the-fly)
+a += F;                // illegal in Eigen. In Matlab a = a+F is allowed
+a += F.cast<double>(); // F converted to double and then added (generally, conversion happens on-the-fly)
 
 // Eigen can map existing memory into Eigen matrices.
 float array[3];
@@ -194,12 +194,12 @@ Matrix2i mat2x2(data);                    // copies data into mat2x2
 Matrix2i::Map(data) = 2*mat2x2;           // overwrite elements of data with 2*mat2x2
 MatrixXi::Map(data, 2, 2) += mat2x2;      // adds mat2x2 to elements of data (alternative syntax if size is not know at compile time)
 
-// Solve Ax = b. Result stored in x. Matlab: x = A \ b.
-x = A.ldlt().solve(b));  // A sym. p.s.d.    #include <Eigen/Cholesky>
-x = A.llt() .solve(b));  // A sym. p.d.      #include <Eigen/Cholesky>
-x = A.lu()  .solve(b));  // Stable and fast. #include <Eigen/LU>
-x = A.qr()  .solve(b));  // No pivoting.     #include <Eigen/QR>
-x = A.svd() .solve(b));  // Stable, slowest. #include <Eigen/SVD>
+// Solve Ax = b. Result stored in x. Matlab: x = a \ b.
+x = a.ldlt().solve(b));  // a sym. p.s.d.    #include <Eigen/Cholesky>
+x = a.llt() .solve(b));  // a sym. p.d.      #include <Eigen/Cholesky>
+x = a.lu()  .solve(b));  // Stable and fast. #include <Eigen/LU>
+x = a.qr()  .solve(b));  // No pivoting.     #include <Eigen/QR>
+x = a.svd() .solve(b));  // Stable, slowest. #include <Eigen/SVD>
 // .ldlt() -> .matrixL() and .matrixD()
 // .llt()  -> .matrixL()
 // .lu()   -> .matrixL() and .matrixU()
@@ -208,8 +208,8 @@ x = A.svd() .solve(b));  // Stable, slowest. #include <Eigen/SVD>
 
 // Eigenvalue problems
 // Eigen                          // Matlab
-A.eigenvalues();                  // eig(A);
-EigenSolver<Matrix3d> eig(A);     // [vec val] = eig(A)
+a.eigenvalues();                  // eig(a);
+EigenSolver<Matrix3d> eig(a);     // [vec val] = eig(a)
 eig.eigenvalues();                // diag(val)
 eig.eigenvectors();               // vec
 // For self-adjoint matrices use SelfAdjointEigenSolver<>

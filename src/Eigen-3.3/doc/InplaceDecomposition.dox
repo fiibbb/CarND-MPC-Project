@@ -7,7 +7,7 @@ This feature is especially useful when dealing with huge matrices, and or when t
 
 To this end, the respective decomposition class must be instantiated with a Ref<> matrix type, and the decomposition object must be constructed with the input matrix as argument. As an example, let us consider an inplace LU decomposition with partial pivoting.
 
-Let's start with the basic inclusions, and declaration of a 2x2 matrix \c A:
+Let's start with the basic inclusions, and declaration of a 2x2 matrix \c a:
 
 <table class="example">
 <tr><th>code</th><th>output</th></tr>
@@ -19,7 +19,7 @@ Let's start with the basic inclusions, and declaration of a 2x2 matrix \c A:
 </tr>
 </table>
 
-No surprise here! Then, let's declare our inplace LU object \c lu, and check the content of the matrix \c A:
+No surprise here! Then, let's declare our inplace LU object \c lu, and check the content of the matrix \c a:
 
 <table class="example">
 <tr>
@@ -30,8 +30,8 @@ No surprise here! Then, let's declare our inplace LU object \c lu, and check the
 </tr>
 </table>
 
-Here, the \c lu object computes and stores the \c L and \c U factors within the memory held by the matrix \c A.
-The coefficients of \c A have thus been destroyed during the factorization, and replaced by the L and U factors as one can verify:
+Here, the \c lu object computes and stores the \c L and \c U factors within the memory held by the matrix \c a.
+The coefficients of \c a have thus been destroyed during the factorization, and replaced by the L and U factors as one can verify:
 
 <table class="example">
 <tr>
@@ -52,10 +52,10 @@ Then, one can use the \c lu object as usual, for instance to solve the Ax=b prob
 </tr>
 </table>
 
-Here, since the content of the original matrix \c A has been lost, we had to declared a new matrix \c A0 to verify the result.
+Here, since the content of the original matrix \c a has been lost, we had to declared a new matrix \c A0 to verify the result.
 
-Since the memory is shared between \c A and \c lu, modifying the matrix \c A will make \c lu invalid.
-This can easily be verified by modifying the content of \c A and trying to solve the initial problem again:
+Since the memory is shared between \c a and \c lu, modifying the matrix \c a will make \c lu invalid.
+This can easily be verified by modifying the content of \c a and trying to solve the initial problem again:
 
 <table class="example">
 <tr>
@@ -66,9 +66,9 @@ This can easily be verified by modifying the content of \c A and trying to solve
 </tr>
 </table>
 
-Note that there is no shared pointer under the hood, it is the \b responsibility \b of \b the \b user to keep the input matrix \c A in life as long as \c lu is living.
+Note that there is no shared pointer under the hood, it is the \b responsibility \b of \b the \b user to keep the input matrix \c a in life as long as \c lu is living.
 
-If one wants to update the factorization with the modified A, one has to call the compute method as usual:
+If one wants to update the factorization with the modified a, one has to call the compute method as usual:
 <table class="example">
 <tr>
   <td>\snippet TutorialInplaceLU.cpp recompute
@@ -78,7 +78,7 @@ If one wants to update the factorization with the modified A, one has to call th
 </tr>
 </table>
 
-Note that calling compute does not change the memory which is referenced by the \c lu object. Therefore, if the compute method is called with another matrix \c A1 different than \c A, then the content of \c A1 won't be modified. This is still the content of \c A that will be used to store the L and U factors of the matrix \c A1.
+Note that calling compute does not change the memory which is referenced by the \c lu object. Therefore, if the compute method is called with another matrix \c A1 different than \c a, then the content of \c A1 won't be modified. This is still the content of \c a that will be used to store the L and U factors of the matrix \c A1.
 This can easily be verified as follows:
 <table class="example">
 <tr>

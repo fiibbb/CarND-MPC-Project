@@ -18,10 +18,10 @@
 *  Definition:
 *  ===========
 *
-*       DOUBLE PRECISION FUNCTION DLAPY2( X, Y )
+*       DOUBLE PRECISION FUNCTION DLAPY2( x, y )
 * 
 *       .. Scalar Arguments ..
-*       DOUBLE PRECISION   X, Y
+*       DOUBLE PRECISION   x, y
 *       ..
 *  
 *
@@ -37,15 +37,15 @@
 *  Arguments:
 *  ==========
 *
-*> \param[in] X
+*> \param[in] x
 *> \verbatim
-*>          X is DOUBLE PRECISION
+*>          x is DOUBLE PRECISION
 *> \endverbatim
 *>
-*> \param[in] Y
+*> \param[in] y
 *> \verbatim
-*>          Y is DOUBLE PRECISION
-*>          X and Y specify the values x and y.
+*>          y is DOUBLE PRECISION
+*>          x and y specify the values x and y.
 *> \endverbatim
 *
 *  Authors:
@@ -61,7 +61,7 @@
 *> \ingroup auxOTHERauxiliary
 *
 *  =====================================================================
-      DOUBLE PRECISION FUNCTION DLAPY2( X, Y )
+      DOUBLE PRECISION FUNCTION DLAPY2( x, y )
 *
 *  -- LAPACK auxiliary routine (version 3.4.0) --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
@@ -69,7 +69,7 @@
 *     November 2011
 *
 *     .. Scalar Arguments ..
-      DOUBLE PRECISION   X, Y
+      DOUBLE PRECISION   x, y
 *     ..
 *
 *  =====================================================================
@@ -88,8 +88,8 @@
 *     ..
 *     .. Executable Statements ..
 *
-      XABS = ABS( X )
-      YABS = ABS( Y )
+      XABS = ABS( x )
+      YABS = ABS( y )
       W = MAX( XABS, YABS )
       Z = MIN( XABS, YABS )
       IF( Z.EQ.ZERO ) THEN

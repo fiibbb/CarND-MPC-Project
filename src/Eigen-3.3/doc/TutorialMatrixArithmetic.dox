@@ -54,7 +54,7 @@ Multiplication and division by a scalar is very simple too. The operators at han
 </td></tr></table>
 
 
-\section TutorialArithmeticMentionXprTemplates A note about expression templates
+\section TutorialArithmeticMentionXprTemplates a note about expression templates
 
 This is an advanced topic that we explain on \ref TopicEigenExpressionTemplates "this page",
 but it is useful to just mention it now. In Eigen, arithmetic operators such as \c operator+ don't

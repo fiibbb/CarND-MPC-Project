@@ -77,14 +77,14 @@ Here is the previous matrix represented in compressed mode:
 <tr><td>OuterStarts:</td><td>0</td><td>2</td><td>4</td><td>5</td><td>6</td><td>\em 8 </td></tr>
 </table>
 
-A SparseVector is a special case of a SparseMatrix where only the \c Values and \c InnerIndices arrays are stored.
+a SparseVector is a special case of a SparseMatrix where only the \c Values and \c InnerIndices arrays are stored.
 There is no notion of compressed/uncompressed mode for a SparseVector.
 
 
 \section TutorialSparseExample First example
 
-Before describing each individual class, let's start with the following typical example: solving the Laplace equation \f$ \Delta u = 0 \f$ on a regular 2D grid using a finite difference scheme and Dirichlet boundary conditions.
-Such problem can be mathematically expressed as a linear problem of the form \f$ Ax=b \f$ where \f$ x \f$ is the vector of \c m unknowns (in our case, the values of the pixels), \f$ b \f$ is the right hand side vector resulting from the boundary conditions, and \f$ A \f$ is an \f$ m \times m \f$ matrix containing only a few non-zero elements resulting from the discretization of the Laplacian operator.
+Before describing each individual class, let's start with the following typical example: solving the Laplace equation \f$ \delta u = 0 \f$ on a regular 2D grid using a finite difference scheme and Dirichlet boundary conditions.
+Such problem can be mathematically expressed as a linear problem of the form \f$ Ax=b \f$ where \f$ x \f$ is the vector of \c m unknowns (in our case, the values of the pixels), \f$ b \f$ is the right hand side vector resulting from the boundary conditions, and \f$ a \f$ is an \f$ m \times m \f$ matrix containing only a few non-zero elements resulting from the discretization of the Laplacian operator.
 
 <table class="manual">
 <tr><td>
@@ -94,14 +94,14 @@ Such problem can be mathematically expressed as a linear problem of the form \f$
 \image html Tutorial_sparse_example.jpeg
 </td></tr></table>
 
-In this example, we start by defining a column-major sparse matrix type of double \c SparseMatrix<double>, and a triplet list of the same scalar type \c  Triplet<double>. A triplet is a simple object representing a non-zero entry as the triplet: \c row index, \c column index, \c value.
+In this example, we start by defining a column-major sparse matrix type of double \c SparseMatrix<double>, and a triplet list of the same scalar type \c  Triplet<double>. a triplet is a simple object representing a non-zero entry as the triplet: \c row index, \c column index, \c value.
 
 In the main function, we declare a list \c coefficients of triplets (as a std vector) and the right hand side vector \f$ b \f$ which are filled by the \a buildProblem function.
-The raw and flat list of non-zero entries is then converted to a true SparseMatrix object \c A.
+The raw and flat list of non-zero entries is then converted to a true SparseMatrix object \c a.
 Note that the elements of the list do not have to be sorted, and possible duplicate entries will be summed up.
 
 The last step consists of effectively solving the assembled problem.
-Since the resulting matrix \c A is symmetric by construction, we can perform a direct Cholesky factorization via the SimplicialLDLT class which behaves like its LDLT counterpart for dense objects.
+Since the resulting matrix \c a is symmetric by construction, we can perform a direct Cholesky factorization via the SimplicialLDLT class which behaves like its LDLT counterpart for dense objects.
 
 The resulting vector \c x contains the pixel values as a 1D array which is saved to a jpeg file shown on the right of the code above.
 
@@ -212,7 +212,7 @@ See the SparseMatrix::setFromTriplets() function and class Triplet for more deta
 
 
 In some cases, however, slightly higher performance, and lower memory consumption can be reached by directly inserting the non-zeros into the destination matrix.
-A typical scenario of this approach is illustrated bellow:
+a typical scenario of this approach is illustrated bellow:
 \code
 1: SparseMatrix<double> mat(rows,cols);         // default is column major
 2: mat.reserve(VectorXi::Constant(cols,6));
@@ -247,10 +247,10 @@ sm4 = sm1 + sm2 + sm3;
 \endcode
 sm1, sm2, and sm3 must all be row-major or all column-major.
 On the other hand, there is no restriction on the target matrix sm4.
-For instance, this means that for computing \f$ A^T + A \f$, the matrix \f$ A^T \f$ must be evaluated into a temporary matrix of compatible storage order:
+For instance, this means that for computing \f$ a^T + a \f$, the matrix \f$ a^T \f$ must be evaluated into a temporary matrix of compatible storage order:
 \code
-SparseMatrix<double> A, B;
-B = SparseMatrix<double>(A.transpose()) + A;
+SparseMatrix<double> a, B;
+B = SparseMatrix<double>(a.transpose()) + a;
 \endcode
 
 Binary coefficient wise operators can also mix sparse and dense expressions:
@@ -286,9 +286,9 @@ dm2 = 2. * sm1 * dm1;
     \endcode
   - \b symmetric \b sparse-dense. The product of a sparse symmetric matrix with a dense matrix (or vector) can also be optimized by specifying the symmetry with selfadjointView():
     \code
-dm2 = sm1.selfadjointView<>() * dm1;        // if all coefficients of A are stored
-dm2 = A.selfadjointView<Upper>() * dm1;     // if only the upper part of A is stored
-dm2 = A.selfadjointView<Lower>() * dm1;     // if only the lower part of A is stored
+dm2 = sm1.selfadjointView<>() * dm1;        // if all coefficients of a are stored
+dm2 = a.selfadjointView<Upper>() * dm1;     // if only the upper part of a is stored
+dm2 = a.selfadjointView<Lower>() * dm1;     // if only the lower part of a is stored
     \endcode
   - \b sparse-sparse. For sparse-sparse products, two different algorithms are available. The default one is conservative and preserve the explicit zeros that might appear:
     \code
@@ -342,9 +342,9 @@ dv2 = sm1.transpose().triangularView<Upper>(dv1);
 The selfadjointView() function permits various operations:
  - optimized sparse-dense matrix products:
     \code
-dm2 = sm1.selfadjointView<>() * dm1;        // if all coefficients of A are stored
-dm2 = A.selfadjointView<Upper>() * dm1;     // if only the upper part of A is stored
-dm2 = A.selfadjointView<Lower>() * dm1;     // if only the lower part of A is stored
+dm2 = sm1.selfadjointView<>() * dm1;        // if all coefficients of a are stored
+dm2 = a.selfadjointView<Upper>() * dm1;     // if only the upper part of a is stored
+dm2 = a.selfadjointView<Lower>() * dm1;     // if only the lower part of a is stored
     \endcode
  - copy of triangular parts:
     \code
@@ -354,8 +354,8 @@ sm2.selfadjointView<Lower>() = sm1.selfadjointView<Upper>();      // copies the 
  - application of symmetric permutations:
  \code
 PermutationMatrix<Dynamic,Dynamic> P = ...;
-sm2 = A.selfadjointView<Upper>().twistedBy(P);                                // compute P S P' from the upper triangular part of A, and make it a full matrix
-sm2.selfadjointView<Lower>() = A.selfadjointView<Lower>().twistedBy(P);       // compute P S P' from the lower triangular part of A, and then only compute the lower part
+sm2 = a.selfadjointView<Upper>().twistedBy(P);                                // compute P S P' from the upper triangular part of a, and make it a full matrix
+sm2.selfadjointView<Lower>() = a.selfadjointView<Lower>().twistedBy(P);       // compute P S P' from the lower triangular part of a, and then only compute the lower part
  \endcode
 
 Please, refer to the \link SparseQuickRefPage Quick Reference \endlink  guide for the list of supported operations. The list of linear solvers available is \link TopicSparseSystems here. \endlink

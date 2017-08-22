@@ -41,7 +41,7 @@ The only classes subject to (even partial) API stability guarantee (meaning that
 
 All other classes offer no direct API guarantee, e.g. their methods can be changed; however notice that most classes inherit MatrixBase and that this is where most of their API comes from -- so in practice most of the API is stable.
 
-A few MatrixBase methods are considered experimental, hence not part of any API stability guarantee:
+a few MatrixBase methods are considered experimental, hence not part of any API stability guarantee:
 \li all methods documented as internal
 \li all methods hidden in the Doxygen documentation
 \li all methods marked as experimental
